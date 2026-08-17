@@ -28,10 +28,10 @@ saif1.analysis.pace.calculate_race_pace().
 from __future__ import annotations
 
 import numpy as np
-import pandas as pd
 from fastf1.core import Laps
 
 from saif1.analysis.quality import green_flag_laps, representative_race_pace_laps
+from saif1.config import RANKABLE_COMPOUNDS
 
 MIN_LAPS_FOR_DEGRADATION_FIT = 3
 
@@ -73,6 +73,14 @@ def compound_performance(laps: Laps) -> list[dict]:
     red-flag laps; keeps yellow-flagged laps) - consistent with
     saif1.analysis.pace.calculate_race_pace().
 
+    Only ranks real, physical compounds (config.RANKABLE_COMPOUNDS) -
+    laps with a missing, FastF1-"UNKNOWN", or genuinely unrecognized
+    Compound value are excluded from this ranking (see
+    persistence.build_session_result for where the session-wide count of
+    unrecognized-compound laps is reported instead of silently dropped;
+    "UNKNOWN"/missing laps are not "unrecognized" - they're a legitimate,
+    lower-frequency FastF1 state and aren't separately counted here).
+
     Returns:
         List of dicts sorted by median pace, fastest first:
         {
@@ -85,7 +93,7 @@ def compound_performance(laps: Laps) -> list[dict]:
     results: list[dict] = []
 
     for compound, group in usable.groupby("Compound"):
-        if pd.isna(compound):
+        if compound not in RANKABLE_COMPOUNDS:
             continue
         lap_times = group["LapTime"].dropna().dt.total_seconds()
         if lap_times.empty:

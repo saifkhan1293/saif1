@@ -56,3 +56,44 @@ def test_extract_stints_handles_duplicate_rows():
     stints = extract_stints(laps)
     assert len(stints) == 1
     assert stints[0]["stint_length"] == 2
+
+
+def test_extract_stints_no_compound_data_at_all_is_unknown():
+    laps = make_laps(
+        [{"LapNumber": n, "Stint": 1, "Compound": None, "LapTime": 90.0} for n in range(1, 4)]
+    )
+    stints = extract_stints(laps)
+    assert stints[0]["compound"] == "UNKNOWN"
+
+
+def test_extract_stints_unrecognized_compound_string_is_flagged():
+    # The real bug: FastF1 emitted the literal string "None" for a whole
+    # stint (2023 Canadian GP, TSU laps 36-70) and it was silently
+    # accepted as the stint's compound label.
+    laps = make_laps(
+        [{"LapNumber": n, "Stint": 1, "Compound": "None", "LapTime": 90.0} for n in range(1, 4)]
+    )
+    stints = extract_stints(laps)
+    assert stints[0]["compound"] == "UNRECOGNIZED"
+
+
+def test_extract_stints_prefers_known_compound_over_unrecognized():
+    # A stint where most laps carry a real compound and one lap has
+    # corrupted data - the real value should win, not "UNRECOGNIZED".
+    laps = make_laps(
+        [
+            {"LapNumber": 1, "Stint": 1, "Compound": "MEDIUM", "LapTime": 90.0},
+            {"LapNumber": 2, "Stint": 1, "Compound": "None", "LapTime": 90.5},
+            {"LapNumber": 3, "Stint": 1, "Compound": "MEDIUM", "LapTime": 91.0},
+        ]
+    )
+    stints = extract_stints(laps)
+    assert stints[0]["compound"] == "MEDIUM"
+
+
+def test_extract_stints_recognizes_pre_2019_compound():
+    laps = make_laps(
+        [{"LapNumber": n, "Stint": 1, "Compound": "ULTRASOFT", "LapTime": 85.0} for n in range(1, 4)]
+    )
+    stints = extract_stints(laps)
+    assert stints[0]["compound"] == "ULTRASOFT"

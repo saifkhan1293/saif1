@@ -263,64 +263,99 @@ _POLICY_EXCLUDED_REASONS = {
 }
 
 
-def classify_lap_exclusion_reason(lap_row: pd.Series) -> str | None:
-    """Single-label reason `lap_row` would be excluded by at least the
-    strictest policy (green_flag_pace), or None if the lap is entirely
-    clean. See EXCLUSION_PRECEDENCE for the precedence order and its
-    rationale. Missing columns are treated the same way
-    filter_usable_laps() treats them (as "no exclusion from that check"),
-    so this agrees with the real filter chain when optional data (e.g.
-    TrackStatus) wasn't loaded.
+def classify_all_exclusion_reasons(lap_row: pd.Series) -> list[str]:
+    """Every exclusion reason applicable to `lap_row`, in
+    EXCLUSION_PRECEDENCE order - not just the highest-precedence one.
+
+    A lap can be both e.g. under Safety Car *and* flagged inaccurate; this
+    returns ["inaccurate", "safety_car"] for such a lap (precedence order),
+    so no information about which conditions were genuinely present on
+    this specific lap is lost. See classify_lap_exclusion_reason() for the
+    single-label (first-only) version used for display/labeling.
+
+    Missing columns are treated the same way filter_usable_laps() treats
+    them (as "no exclusion from that check"), so this agrees with the real
+    filter chain when optional data (e.g. TrackStatus) wasn't loaded.
     """
+    reasons: list[str] = []
+
     if bool(lap_row.get("Deleted", False)):
-        return "deleted"
+        reasons.append("deleted")
     if pd.notna(lap_row.get("PitInTime")):
-        return "pit_in"
+        reasons.append("pit_in")
     if pd.notna(lap_row.get("PitOutTime")):
-        return "pit_out"
+        reasons.append("pit_out")
     if not bool(lap_row.get("IsAccurate", True)):
-        return "inaccurate"
+        reasons.append("inaccurate")
 
     track_status = str(lap_row.get("TrackStatus") or "")
     if "5" in track_status:
-        return "red_flag"
+        reasons.append("red_flag")
     if "4" in track_status:
-        return "safety_car"
+        reasons.append("safety_car")
     if "6" in track_status or "7" in track_status:
-        return "virtual_safety_car"
+        reasons.append("virtual_safety_car")
     if "2" in track_status:
-        return "yellow_flag"
+        reasons.append("yellow_flag")
 
-    return None
+    return reasons
+
+
+def classify_lap_exclusion_reason(lap_row: pd.Series) -> str | None:
+    """Single, highest-precedence reason `lap_row` would be excluded by at
+    least the strictest policy (green_flag_pace), or None if the lap is
+    entirely clean. A thin wrapper over classify_all_exclusion_reasons()
+    for callers that only want the primary/display label - see that
+    function if you need every applicable reason, not just the first.
+    """
+    reasons = classify_all_exclusion_reasons(lap_row)
+    return reasons[0] if reasons else None
 
 
 def summarize_exclusions_by_policy(driver_laps: Laps) -> dict:
     """Per-policy retained/excluded lap accounting for one driver's laps,
-    built from a single classification pass over `driver_laps`.
+    built from a single multi-label classification pass over
+    `driver_laps` (classify_all_exclusion_reasons).
 
-    IMPORTANT - what `excluded_by_reason` counts mean: because
-    classification is single-label with precedence, a lap that is e.g.
-    both under Safety Car *and* flagged inaccurate is labeled "inaccurate"
-    only - the safety_car bucket will NOT count it, even though a Safety
-    Car genuinely was active on that lap. These counts are "laps this
-    policy excluded that no higher-precedence reason already claimed", NOT
-    a census of which race conditions were present. Use
-    `summarize_track_conditions` to answer "was there a Safety Car during
-    lap range X" - that is session-level and not subject to this
-    attribution masking.
+    `excluded_by_reason` counts are **multi-label tallies**: a lap that is
+    both under Safety Car *and* flagged inaccurate counts under *both* the
+    "inaccurate" and "safety_car" buckets (for policies that exclude both
+    reasons) - no condition genuinely present on a lap is masked by a
+    higher-precedence one. Because of this, summing every reason bucket's
+    count can legitimately exceed `excluded_laps` (one lap can be counted
+    under more than one reason) - that sum is not a validity check.
+    `excluded_laps_detail` carries the full picture per lap, including a
+    `primary_reason` (the single highest-precedence label, via
+    EXCLUSION_PRECEDENCE) for display purposes only.
+
+    This still does NOT make `excluded_by_reason["safety_car"]` a complete
+    census of laps run under Safety Car - a lap that FastF1 doesn't flag
+    as inaccurate/pit/deleted AND was under Safety Car will correctly show
+    up here, but this is still per-driver/per-lap, not a substitute for
+    `summarize_track_conditions`'s session-level, field-wide view. In
+    practice (see README), SC/VSC/red-flag-affected laps have so far
+    always coincided with an independent inaccurate/pit flag too, so
+    reading `track_conditions` for "did a Safety Car occur" remains the
+    more reliable question to ask; this function now at least *can*
+    reflect it per-driver when it's present.
 
     Returns:
         {
             "laps_recorded": int,  # lap rows present for this driver
                                     # before any filtering - see module
                                     # docs for what counts as a lap row
+            "excluded_laps_detail": [
+                {"lap_number": int, "reasons": [str, ...], "primary_reason": str},
+                ...  # one entry per excluded lap, sorted by lap_number
+            ],
             "policies": {
                 "all_usable_laps": {
                     "retained_laps": int,
-                    "excluded_laps": int,
+                    "excluded_laps": int,  # count of DISTINCT excluded laps
                     "excluded_by_reason": {
                         "deleted": {"count": int, "lap_numbers": [int, ...]},
-                        ... one entry per EXCLUSION_PRECEDENCE reason ...
+                        ... one entry per EXCLUSION_PRECEDENCE reason,
+                        ... multi-label tally, may double-count vs excluded_laps ...
                     },
                 },
                 "representative_race_pace": {...same shape...},
@@ -329,34 +364,63 @@ def summarize_exclusions_by_policy(driver_laps: Laps) -> dict:
         }
 
     Invariant (asserted in tests, not just by inspection): for every
-    policy, retained_laps + sum(reason.count for reason in
-    excluded_by_reason.values()) == laps_recorded.
+    policy, retained_laps + excluded_laps == laps_recorded, where
+    excluded_laps counts each excluded lap once regardless of how many
+    reasons applied to it. This is now the only arithmetic invariant -
+    the reason-bucket counts are allowed to sum to more than excluded_laps
+    by design. The PRIMARY correctness check remains the cross-check
+    against the real all_usable_laps/representative_race_pace_laps/
+    green_flag_laps filter functions (see tests/test_quality.py), which
+    this multi-label change does not affect: because the three policies'
+    excluded-reason sets are each a prefix of EXCLUSION_PRECEDENCE, "is
+    the primary (highest-precedence) reason in this policy's set" and "is
+    any applicable reason in this policy's set" give identical
+    retained/excluded results for every lap - verified by test, not just
+    asserted here.
     """
     laps_recorded = len(driver_laps)
 
-    reason_counts: dict[str, dict] = {
+    excluded_laps_detail: list[dict] = []
+    reason_tally: dict[str, dict] = {
         reason: {"count": 0, "lap_numbers": []} for reason in EXCLUSION_PRECEDENCE
     }
 
     if laps_recorded:
         for _, row in driver_laps.iterrows():
-            reason = classify_lap_exclusion_reason(row)
-            if reason is None:
+            reasons = classify_all_exclusion_reasons(row)
+            if not reasons:
                 continue
-            reason_counts[reason]["count"] += 1
+
             lap_number = row.get("LapNumber")
-            if pd.notna(lap_number):
-                reason_counts[reason]["lap_numbers"].append(int(lap_number))
+            lap_number_int = int(lap_number) if pd.notna(lap_number) else None
+
+            excluded_laps_detail.append(
+                {"lap_number": lap_number_int, "reasons": reasons, "primary_reason": reasons[0]}
+            )
+            for reason in reasons:
+                reason_tally[reason]["count"] += 1
+                if lap_number_int is not None:
+                    reason_tally[reason]["lap_numbers"].append(lap_number_int)
+
+    excluded_laps_detail.sort(key=lambda d: (d["lap_number"] is None, d["lap_number"]))
 
     policies = {}
     for policy_name, excluded_reasons in _POLICY_EXCLUDED_REASONS.items():
-        excluded_laps = sum(reason_counts[r]["count"] for r in excluded_reasons)
+        # Count matching ROWS in excluded_laps_detail directly (one entry
+        # per originally-excluded row, already 1:1 with driver_laps rows -
+        # see the iterrows() loop above), not a set of lap numbers: a set
+        # would silently collapse/undercount any rows with a missing
+        # LapNumber, since every such row's lap_number is None and sets
+        # only keep one None.
+        excluded_count = sum(
+            1 for d in excluded_laps_detail if any(r in excluded_reasons for r in d["reasons"])
+        )
         policies[policy_name] = {
-            "retained_laps": laps_recorded - excluded_laps,
-            "excluded_laps": excluded_laps,
+            "retained_laps": laps_recorded - excluded_count,
+            "excluded_laps": excluded_count,
             "excluded_by_reason": {
                 reason: (
-                    reason_counts[reason]
+                    reason_tally[reason]
                     if reason in excluded_reasons
                     else {"count": 0, "lap_numbers": []}
                 )
@@ -364,7 +428,11 @@ def summarize_exclusions_by_policy(driver_laps: Laps) -> dict:
             },
         }
 
-    return {"laps_recorded": laps_recorded, "policies": policies}
+    return {
+        "laps_recorded": laps_recorded,
+        "excluded_laps_detail": excluded_laps_detail,
+        "policies": policies,
+    }
 
 
 # Track-status codes summarized at session level (a Safety Car or red flag
@@ -381,12 +449,28 @@ def summarize_track_conditions(laps: Laps) -> list[dict]:
     VSC, red flag, or yellow flag conditions were active anywhere in the
     field.
 
-    Unlike `summarize_exclusions_by_policy`'s excluded_by_reason (which
-    only ever shows the single highest-precedence reason a *specific* lap
-    was excluded for), this answers "was condition X present during lap
-    range Y" directly and completely, by taking the union of every
-    driver's TrackStatus for each lap number - it does not lose
-    information to precedence masking.
+    IMPORTANT - this is a UNION ACROSS ALL DRIVERS, not a claim about any
+    individual driver's laps. It's built by taking, for each lap number,
+    the union of every driver's own TrackStatus value for that lap number
+    - so a condition can appear here for lap N even if a *specific*
+    driver's own lap N never carried that status code, simply because
+    another driver's lap N (or N's boundary, given drivers don't cross the
+    line at the same wall-clock time) did. Concretely observed: at the
+    2023 Canadian GP, this reports VSC active for lap range 7-8, but
+    VER's own TrackStatus for lap 7 is "12" (yellow only, no VSC code) -
+    both facts are correct simultaneously, because they're answering
+    different questions ("was VSC active anywhere in the field during lap
+    7-8" vs. "was VER's own lap 7 run under VSC"). Do not read an entry
+    here as "every driver's lap in this range was under this condition" -
+    for the per-driver, per-lap answer, use
+    `summarize_exclusions_by_policy`'s `excluded_laps_detail[].reasons`
+    instead (each entry lists every condition genuinely present on that
+    specific driver's specific lap, not just the highest-precedence one).
+
+    This answers "was condition X present anywhere during lap range Y"
+    completely at the field level - it does not lose information to
+    precedence masking the way a single-label per-driver classification
+    would.
 
     Args:
         laps: Full session Laps (e.g. session.laps, all drivers).

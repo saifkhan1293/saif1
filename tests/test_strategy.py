@@ -38,6 +38,27 @@ def test_extract_pit_stops_empty():
     assert extract_pit_stops(laps) == []
 
 
+def test_extract_pit_stops_unrecognized_compound_flagged_not_passed_through_raw():
+    # Same latent bug class as compound_performance/extract_stints: an
+    # unrecognized Compound string (e.g. FastF1's observed "None") must
+    # not be silently passed through as if it were a real compound.
+    laps = make_laps(
+        [
+            {
+                "Driver": "XXX", "DriverNumber": "0", "LapNumber": 1, "Compound": "SOFT",
+                "PitInTime": 100.0,
+            },
+            {
+                "Driver": "XXX", "DriverNumber": "0", "LapNumber": 2, "Compound": "None",
+                "PitOutTime": 124.0,
+            },
+        ]
+    )
+    stops = extract_pit_stops(laps)
+    assert stops[0]["compound_before"] == "SOFT"
+    assert stops[0]["compound_after"] == "UNRECOGNIZED"
+
+
 def test_position_changes_normal():
     results = pd.DataFrame(
         [

@@ -249,48 +249,69 @@ assume this always holds; it just means when you see no difference, check
 
 ### Per-driver exclusion accounting (`lap_exclusions`)
 
-Every lap is classified with a **single** exclusion reason by precedence
-(`quality.EXCLUSION_PRECEDENCE`): `deleted` > `pit_in` > `pit_out` >
+Every excluded lap is classified with **every applicable exclusion
+reason** (`quality.classify_all_exclusion_reasons`), not just one - a lap
+that is simultaneously under Safety Car *and* flagged inaccurate is
+labeled with *both* `"inaccurate"` and `"safety_car"`, not whichever comes
+first. `excluded_laps_detail` carries this directly per lap:
+`{"lap_number": 14, "reasons": ["inaccurate", "safety_car"], "primary_reason": "inaccurate"}`.
+`primary_reason` is the single highest-precedence label
+(`quality.EXCLUSION_PRECEDENCE`: `deleted` > `pit_in` > `pit_out` >
 `inaccurate` > `red_flag` > `safety_car` > `virtual_safety_car` >
-`yellow_flag`. Structural reasons outrank flag conditions (a
-deleted/pit/inaccurate lap is invalid regardless of what flag was active);
-`pit_in`/`pit_out` outrank `inaccurate` specifically because pit laps are
-very often *also* flagged inaccurate by FastF1, and the pit-lane label is
-far more meaningful to a reader. Flag conditions are ordered by severity.
+`yellow_flag` - structural reasons outrank flag conditions since a
+deleted/pit/inaccurate lap is invalid regardless of what flag was active;
+`pit_in`/`pit_out` outrank `inaccurate` because pit laps are very often
+*also* flagged inaccurate by FastF1, and the pit-lane label is far more
+meaningful to a reader) - kept for display purposes only, never used to
+decide what's excluded.
 
-**This means `excluded_by_reason` counts are incremental attribution, not
-a census of race conditions.** A lap that is both under Safety Car *and*
-flagged inaccurate is counted under `inaccurate` only - the `safety_car`
-bucket will not count it, even though a Safety Car genuinely was active on
-that lap (see the empirical finding above, where this happens for nearly
-every SC/VSC/red-flag-affected lap in both verification races). Do
-**not** read a zero `safety_car`/`virtual_safety_car`/`red_flag` count as
-"no Safety Car/VSC/red flag occurred" - check `track_conditions` for that.
+`excluded_by_reason` (per policy) is a **multi-label tally**: a lap
+counted under `"inaccurate"` can *also* be counted under `"safety_car"` if
+both genuinely applied, so summing every reason bucket's count can exceed
+`excluded_laps` (which counts each excluded lap once, however many
+reasons applied). That's expected, not a bug - `excluded_laps_detail` is
+the ground truth; the per-reason buckets are a derived, human-scannable
+view of it.
 
 `quality.summarize_exclusions_by_policy(driver_laps)` computes this once
 per driver and derives all three policies' retained/excluded counts from
 it. The **primary correctness check** (in `tests/test_quality.py`) is not
-that these numbers are internally self-consistent (`retained +
-sum(excluded_by_reason) == total`, which holds by construction and proves
-nothing on its own) - it's that `retained_laps` for each policy is
-cross-checked against calling the real `all_usable_laps` /
-`representative_race_pace_laps` / `green_flag_laps` filter functions
-directly, across both synthetic edge-case fixtures (empty, all-deleted,
-all-inaccurate, a DNF-like driver with fewer laps than race distance,
-duplicate rows) and, in manual verification, real 2023/2024 race data.
-No disagreement has been found between the classifier and the real filter
-chain in any case tested.
+the arithmetic invariant (`retained_laps + excluded_laps == laps_recorded`,
+which holds by construction and proves nothing on its own) - it's that
+`retained_laps` for each policy is cross-checked against calling the real
+`all_usable_laps` / `representative_race_pace_laps` / `green_flag_laps`
+filter functions directly, across synthetic edge-case fixtures (empty,
+all-deleted, all-inaccurate, a DNF-like driver with fewer laps than race
+distance, duplicate rows) and real 2023/2024 race data (manual
+verification). No disagreement has ever been found between the classifier
+and the real filter chain. This cross-check result is unaffected by
+multi-label attribution: because each policy's excluded-reason set is a
+prefix of `EXCLUSION_PRECEDENCE`, checking "is the primary reason in this
+policy's set" and "is any applicable reason in this policy's set" give
+identical retained/excluded results for every lap - verified by test
+(`test_multi_label_does_not_change_cross_check_result`), not just argued.
 
 ### Session-level track conditions (`track_conditions`)
 
-Because `lap_exclusions` can mask genuine SC/VSC/red-flag involvement (see
-above), `quality.summarize_track_conditions(laps)` independently answers
-"was Safety Car/VSC/red flag/yellow active during lap range X" at the
-**session level** (not per-driver - these are field-wide conditions), by
-taking the union of every driver's `TrackStatus` per lap number and
-collapsing it into contiguous lap ranges. This is the reliable way to
-check whether a condition occurred; `lap_exclusions`'s reason buckets are
-not.
+`quality.summarize_track_conditions(laps)` answers "was Safety Car/VSC/red
+flag/yellow active during lap range X" at the **session level** - a
+**union across all drivers' laps**, not a per-driver claim, by taking the
+union of every driver's `TrackStatus` for each lap number and collapsing
+it into contiguous ranges.
+
+**This is not the same question as "was driver D under this condition on
+lap N".** Concretely observed at the 2023 Canadian GP: `track_conditions`
+reports VSC active for lap range 7-8, but VER's own `TrackStatus` for lap
+7 is `"12"` (yellow only, no VSC code) - both facts are correct
+simultaneously, because they answer different questions (was VSC active
+*anywhere in the field* during lap 7-8, vs. was VER's *own* lap 7 run
+under VSC). For the per-driver, per-lap answer, use
+`lap_exclusions[].excluded_laps_detail[].reasons` instead - each entry
+lists every condition genuinely present on that specific driver's
+specific lap. Cross-checked directly on real data (2023 Canadian GP and
+Australian GP): every lap any driver's `excluded_laps_detail` labels
+`"safety_car"` falls inside one of that session's `track_conditions`
+Safety Car windows - zero mismatches found in either race.
 
 ### Real edge cases found while testing
 
@@ -317,11 +338,11 @@ creating duplicates.
 
 ```jsonc
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "provenance": {
     "data_source": "FastF1",
     "fastf1_version": "3.8.3",
-    "saif1_methodology_version": "1.5.0",
+    "saif1_methodology_version": "1.5.1",
     "generated_at": "2026-08-17T18:04:00+00:00",
     "session_identifier": "2024-01-R"
   },
@@ -343,15 +364,20 @@ creating duplicates.
     "representative_race_pace": [ /* one calculate_race_pace() dict per driver with laps */ ],
     "green_flag_pace": [ /* one calculate_green_flag_pace() dict per driver with laps */ ]
   },
-  "stints": [ /* extract_stints() output, all drivers */ ],
+  "stints": [ /* extract_stints() output, all drivers - compound is a real
+                 name, "UNKNOWN", or "UNRECOGNIZED", see below */ ],
   "tyre_degradation": [ /* one stint_degradation() result per stint, all drivers */ ],
-  "compound_performance": [ /* compound_performance() output */ ],
+  "compound_performance": [ /* compound_performance() output - real, rankable compounds only */ ],
   "pit_stops": [ /* extract_pit_stops() output */ ],
   "position_changes": [ /* position_changes() output - drivers[] is canonical for grid/finish position, this must always agree with it */ ],
   "lap_exclusions": [
     {
       "driver": "VER",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {"lap_number": 14, "reasons": ["inaccurate", "safety_car"], "primary_reason": "inaccurate"}
+        // one entry per excluded lap - ALL applicable reasons, not just one
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 52, "excluded_laps": 5,
@@ -364,6 +390,7 @@ creating duplicates.
             "safety_car": {"count": 0, "lap_numbers": []},
             "virtual_safety_car": {"count": 0, "lap_numbers": []},
             "yellow_flag": {"count": 0, "lap_numbers": []}
+            // multi-label tally - these can sum to more than excluded_laps
           }
         },
         "representative_race_pace": { "...same shape..." },
@@ -373,8 +400,16 @@ creating duplicates.
   ],
   "track_conditions": [
     { "condition": "safety_car", "code": "4", "start_lap": 12, "end_lap": 14 }
-    // session-level, sorted by start_lap - see "Session-level track conditions" above
+    // session-level UNION across all drivers, sorted by start_lap - NOT a
+    // per-driver claim, see "Session-level track conditions" above
   ],
+  "unrecognized_compound_laps": {
+    "count": 35,
+    "by_driver": { "TSU": [36, 37, "..."] }
+    // laps with a non-null Compound value that isn't in
+    // config.KNOWN_TYRE_COMPOUNDS at all (e.g. the literal string "None",
+    // observed in real 2023 Canadian GP data) - never silently dropped
+  },
   "quality_policy_definitions": {
     "all_usable_laps": "...", "representative_race_pace": "...", "green_flag_pace": "..."
     // read directly from quality.POLICY_DEFINITIONS - never hand-duplicated
@@ -389,6 +424,32 @@ it is a car number, not an arithmetic quantity), `full_name`←`FullName`,
 `Position` (both `int` or explicit `null`), `status`←`Status` (FastF1's own
 classification text, e.g. `"Finished"`, `"Retired"`, `"Disqualified"`,
 passed through verbatim).
+
+**Tyre compound values** are validated against `config.KNOWN_TYRE_COMPOUNDS`
+- determined *empirically* (not assumed) by reading FastF1's own
+`fastf1.plotting` per-season compound constants across 2018-2025 and
+cross-checked by loading real sessions across compound-naming eras
+(2018 Monaco/Abu Dhabi for `HYPERSOFT`/`SUPERSOFT`/`ULTRASOFT`/`SUPERHARD`,
+2018/2019 German GP for `INTERMEDIATE`/`WET`, current-era Bahrain for
+`SOFT`/`MEDIUM`/`HARD`). Every compound-bearing field
+(`stints[].compound`, `tyre_degradation[].compound`,
+`pit_stops[].compound_before/after`) uses one of three kinds of value:
+a real compound name; `"UNKNOWN"` (FastF1's own "I don't know" value, or
+genuinely no data recorded at all - these are treated the same); or
+`"UNRECOGNIZED"` (a non-null value present but not in the known
+vocabulary at all - e.g. the literal string `"None"`, which is what
+FastF1 actually emitted for one driver's final stint in the 2023 Canadian
+GP real data, and which used to rank *first* in `compound_performance`,
+ahead of every real compound, before this validation existed).
+`compound_performance` additionally excludes `"UNKNOWN"`/`"TEST-UNKNOWN"`
+laps from its ranking (not a real physical tyre choice to rank), without
+treating them as unrecognized. If unrecognized-compound laps make up a
+significant fraction of a session (≥5%) or of one driver's own laps
+(≥20%), `persistence.py` logs a warning unprompted, in addition to the
+always-present `unrecognized_compound_laps` field - the real 2023 Canadian
+GP case (one driver, 35 of their own 70 laps, 50%) triggers the
+per-driver warning but not the session-wide one (35 of 1317 total laps,
+~2.7%), which is why both thresholds exist rather than just one.
 
 **`laps_recorded`** is the number of lap rows FastF1 has for that driver
 *before any filtering* - not the race distance. For a driver who completed
@@ -412,11 +473,13 @@ exist yet.
 
 **`data/results/` is git-tracked**, not gitignored - a deliberate choice.
 Reproducible, inspectable analytical output is a credibility/transparency
-asset for a public portfolio project, and these are small (~130-150 KB per
-race session, measured from real verification runs - see below), fully
-deterministic, non-sensitive JSON files with no raw data or telemetry in
-them. At ~24 races/season this is on the order of 3-4 MB/season if only
-Race sessions are persisted - trivial for git.
+asset for a public portfolio project, and these are small (~170-220 KB per
+race session as of schema 1.1 - measured directly: 169.0 KB for Bahrain
+2024, 220.8 KB for the 2023 Australian GP, 199.7 KB for the 2023 Canadian
+GP; grew from the ~140-150 KB schema-1.0 figure once `excluded_laps_detail`
+was added), fully deterministic, non-sensitive JSON files with no raw data
+or telemetry in them. At ~24 races/season this is on the order of 4-5
+MB/season if only Race sessions are persisted - trivial for git.
 
 **Regeneration overwrites in place.** The filename depends only on
 `year`/`round_number`/`event_name` (FastF1's resolved name)/`session_type`
@@ -438,10 +501,14 @@ nothing else changed.
 - Session/event validation depends on FastF1's schedule data being
   available for the requested year; sessions that haven't happened yet,
   or years with no published schedule, raise `SessionNotFoundError`.
-- `lap_exclusions`'s per-reason counts are incremental attribution, not a
-  condition census - see **Data quality & assumptions** above. Always
-  check `track_conditions` before concluding a flag condition didn't
-  occur just because its exclusion bucket is zero.
+- `lap_exclusions[].excluded_laps_detail` now records every applicable
+  reason per lap (multi-label), so it's no longer subject to precedence
+  masking - a genuine Safety Car lap will show `"safety_car"` in its
+  `reasons` list even if it's also inaccurate. `track_conditions` remains
+  the reliable *session-level* (all-drivers-union) answer to "did a
+  condition occur" - it is not a per-driver claim, see **Session-level
+  track conditions** above for the concrete VER-lap-7 example where the
+  two questions genuinely differ.
 - `pit_lane_time_s` during a red flag spans the entire stoppage, not a
   real pit stop duration - observed directly in the 2023 Australian GP
   verification run (900+ second values). Technically correct given the

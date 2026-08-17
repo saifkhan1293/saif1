@@ -1,10 +1,10 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "provenance": {
     "data_source": "FastF1",
     "fastf1_version": "3.8.3",
-    "saif1_methodology_version": "1.5.0",
-    "generated_at": "2026-08-17T02:17:18.443077+00:00",
+    "saif1_methodology_version": "1.5.1",
+    "generated_at": "2026-08-17T03:10:28.851244+00:00",
     "session_identifier": "2024-01-R"
   },
   "session": {
@@ -3228,6 +3228,69 @@
     {
       "driver": "VER",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 11,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 17,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 18,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 46,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 51,
@@ -3254,9 +3317,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                17,
+                18,
+                37,
+                38
               ]
             },
             "red_flag": {
@@ -3302,9 +3369,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                17,
+                18,
+                37,
+                38
               ]
             },
             "red_flag": {
@@ -3350,9 +3421,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                17,
+                18,
+                37,
+                38
               ]
             },
             "red_flag": {
@@ -3368,8 +3443,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 2,
+              "count": 3,
               "lap_numbers": [
+                1,
                 10,
                 11
               ]
@@ -3381,6 +3457,55 @@
     {
       "driver": "PER",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 36,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 52,
@@ -3405,9 +3530,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                36,
+                37
               ]
             },
             "red_flag": {
@@ -3451,9 +3580,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                36,
+                37
               ]
             },
             "red_flag": {
@@ -3497,9 +3630,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                36,
+                37
               ]
             },
             "red_flag": {
@@ -3515,8 +3652,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -3527,6 +3665,55 @@
     {
       "driver": "SAI",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 14,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 15,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 35,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 36,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 52,
@@ -3551,9 +3738,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                14,
+                15,
+                35,
+                36
               ]
             },
             "red_flag": {
@@ -3597,9 +3788,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                14,
+                15,
+                35,
+                36
               ]
             },
             "red_flag": {
@@ -3643,9 +3838,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                14,
+                15,
+                35,
+                36
               ]
             },
             "red_flag": {
@@ -3661,8 +3860,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -3673,6 +3873,62 @@
     {
       "driver": "LEC",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 4,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 11,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 34,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 35,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 51,
@@ -3699,9 +3955,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -3747,9 +4007,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -3795,9 +4059,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -3813,8 +4081,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -3825,6 +4094,62 @@
     {
       "driver": "RUS",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 11,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 31,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 32,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 46,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 51,
@@ -3851,9 +4176,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                31,
+                32
               ]
             },
             "red_flag": {
@@ -3899,9 +4228,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                31,
+                32
               ]
             },
             "red_flag": {
@@ -3947,9 +4280,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                31,
+                32
               ]
             },
             "red_flag": {
@@ -3965,8 +4302,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -3977,6 +4315,76 @@
     {
       "driver": "NOR",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 3,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 4,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 14,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 33,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 34,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 56,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 49,
@@ -4005,9 +4413,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                13,
+                14,
+                33,
+                34
               ]
             },
             "red_flag": {
@@ -4055,9 +4467,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                13,
+                14,
+                33,
+                34
               ]
             },
             "red_flag": {
@@ -4105,9 +4521,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                13,
+                14,
+                33,
+                34
               ]
             },
             "red_flag": {
@@ -4123,8 +4543,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -4135,6 +4556,69 @@
     {
       "driver": "HAM",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 33,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 34,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 47,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 50,
@@ -4162,9 +4646,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                33,
+                34
               ]
             },
             "red_flag": {
@@ -4211,9 +4699,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                33,
+                34
               ]
             },
             "red_flag": {
@@ -4260,9 +4752,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                33,
+                34
               ]
             },
             "red_flag": {
@@ -4278,8 +4774,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -4290,6 +4787,76 @@
     {
       "driver": "PIA",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 34,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 35,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 50,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 49,
@@ -4318,9 +4885,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -4368,9 +4939,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -4418,9 +4993,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -4436,8 +5015,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -4448,6 +5028,55 @@
     {
       "driver": "ALO",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 15,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 16,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 41,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 42,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 52,
@@ -4472,9 +5101,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                15,
+                16,
+                41,
+                42
               ]
             },
             "red_flag": {
@@ -4518,9 +5151,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                15,
+                16,
+                41,
+                42
               ]
             },
             "red_flag": {
@@ -4564,9 +5201,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                15,
+                16,
+                41,
+                42
               ]
             },
             "red_flag": {
@@ -4582,8 +5223,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -4594,6 +5236,49 @@
     {
       "driver": "STR",
       "laps_recorded": 57,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 9,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "pit_out",
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 52,
@@ -4618,9 +5303,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                9,
+                10,
+                27,
+                28
               ]
             },
             "red_flag": {
@@ -4664,9 +5353,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                9,
+                10,
+                27,
+                28
               ]
             },
             "red_flag": {
@@ -4710,9 +5403,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                9,
+                10,
+                27,
+                28
               ]
             },
             "red_flag": {
@@ -4728,8 +5425,11 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 2,
+              "lap_numbers": [
+                1,
+                10
+              ]
             }
           }
         }
@@ -4738,6 +5438,49 @@
     {
       "driver": "ZHO",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 9,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "pit_out",
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 29,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 51,
@@ -4762,9 +5505,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                9,
+                10,
+                28,
+                29
               ]
             },
             "red_flag": {
@@ -4808,9 +5555,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                9,
+                10,
+                28,
+                29
               ]
             },
             "red_flag": {
@@ -4854,9 +5605,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                9,
+                10,
+                28,
+                29
               ]
             },
             "red_flag": {
@@ -4872,8 +5627,11 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 2,
+              "lap_numbers": [
+                1,
+                10
+              ]
             }
           }
         }
@@ -4882,6 +5640,55 @@
     {
       "driver": "MAG",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 11,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 32,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 33,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 51,
@@ -4906,9 +5713,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                32,
+                33
               ]
             },
             "red_flag": {
@@ -4952,9 +5763,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                32,
+                33
               ]
             },
             "red_flag": {
@@ -4998,9 +5813,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                11,
+                12,
+                32,
+                33
               ]
             },
             "red_flag": {
@@ -5016,8 +5835,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -5028,6 +5848,76 @@
     {
       "driver": "RIC",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 14,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 35,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 36,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 51,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 55,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 56,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 48,
@@ -5056,9 +5946,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                13,
+                14,
+                35,
+                36
               ]
             },
             "red_flag": {
@@ -5106,9 +6000,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                13,
+                14,
+                35,
+                36
               ]
             },
             "red_flag": {
@@ -5156,9 +6054,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                13,
+                14,
+                35,
+                36
               ]
             },
             "red_flag": {
@@ -5174,8 +6076,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -5186,6 +6089,63 @@
     {
       "driver": "TSU",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "deleted",
+            "yellow_flag"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 14,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 15,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 34,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 35,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 49,
@@ -5213,9 +6173,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                14,
+                15,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -5262,9 +6226,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                14,
+                15,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -5311,9 +6279,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                14,
+                15,
+                34,
+                35
               ]
             },
             "red_flag": {
@@ -5329,8 +6301,11 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 2,
+              "lap_numbers": [
+                1,
+                10
+              ]
             }
           }
         }
@@ -5339,6 +6314,69 @@
     {
       "driver": "ALB",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 15,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 16,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 36,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 47,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 49,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 49,
@@ -5366,9 +6404,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                15,
+                16,
+                36,
+                37
               ]
             },
             "red_flag": {
@@ -5415,9 +6457,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                15,
+                16,
+                36,
+                37
               ]
             },
             "red_flag": {
@@ -5464,9 +6510,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                15,
+                16,
+                36,
+                37
               ]
             },
             "red_flag": {
@@ -5482,8 +6532,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -5494,6 +6545,71 @@
     {
       "driver": "HUL",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "pit_in",
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 2,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 9,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 20,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 21,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 41,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 42,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 50,
@@ -5520,8 +6636,15 @@
               ]
             },
             "inaccurate": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 6,
+              "lap_numbers": [
+                1,
+                2,
+                20,
+                21,
+                41,
+                42
+              ]
             },
             "red_flag": {
               "count": 0,
@@ -5566,8 +6689,15 @@
               ]
             },
             "inaccurate": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 6,
+              "lap_numbers": [
+                1,
+                2,
+                20,
+                21,
+                41,
+                42
+              ]
             },
             "red_flag": {
               "count": 0,
@@ -5612,8 +6742,15 @@
               ]
             },
             "inaccurate": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 6,
+              "lap_numbers": [
+                1,
+                2,
+                20,
+                21,
+                41,
+                42
+              ]
             },
             "red_flag": {
               "count": 0,
@@ -5628,8 +6765,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 2,
+              "count": 3,
               "lap_numbers": [
+                1,
                 9,
                 10
               ]
@@ -5641,6 +6779,49 @@
     {
       "driver": "OCO",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "pit_in",
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 11,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 30,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 31,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 51,
@@ -5665,9 +6846,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                10,
+                11,
+                30,
+                31
               ]
             },
             "red_flag": {
@@ -5711,9 +6896,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                10,
+                11,
+                30,
+                31
               ]
             },
             "red_flag": {
@@ -5757,9 +6946,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                10,
+                11,
+                30,
+                31
               ]
             },
             "red_flag": {
@@ -5775,8 +6968,11 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 2,
+              "lap_numbers": [
+                1,
+                10
+              ]
             }
           }
         }
@@ -5785,6 +6981,79 @@
     {
       "driver": "GAS",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 31,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 32,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 43,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 44,
+          "reasons": [
+            "deleted",
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 55,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 48,
@@ -5806,16 +7075,23 @@
               ]
             },
             "pit_out": {
-              "count": 2,
+              "count": 3,
               "lap_numbers": [
                 13,
-                32
+                32,
+                44
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 7,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                31,
+                32,
+                43,
+                44
               ]
             },
             "red_flag": {
@@ -5856,16 +7132,23 @@
               ]
             },
             "pit_out": {
-              "count": 2,
+              "count": 3,
               "lap_numbers": [
                 13,
-                32
+                32,
+                44
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 7,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                31,
+                32,
+                43,
+                44
               ]
             },
             "red_flag": {
@@ -5906,16 +7189,23 @@
               ]
             },
             "pit_out": {
-              "count": 2,
+              "count": 3,
               "lap_numbers": [
                 13,
-                32
+                32,
+                44
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 7,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                31,
+                32,
+                43,
+                44
               ]
             },
             "red_flag": {
@@ -5931,8 +7221,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -5943,6 +7234,55 @@
     {
       "driver": "BOT",
       "laps_recorded": 56,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "yellow_flag"
+          ],
+          "primary_reason": "yellow_flag"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 30,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 31,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 51,
@@ -5967,9 +7307,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                30,
+                31
               ]
             },
             "red_flag": {
@@ -6013,9 +7357,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                30,
+                31
               ]
             },
             "red_flag": {
@@ -6059,9 +7407,13 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 5,
               "lap_numbers": [
-                1
+                1,
+                12,
+                13,
+                30,
+                31
               ]
             },
             "red_flag": {
@@ -6077,8 +7429,9 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 1,
+              "count": 2,
               "lap_numbers": [
+                1,
                 10
               ]
             }
@@ -6089,6 +7442,65 @@
     {
       "driver": "SAR",
       "laps_recorded": 55,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 10,
+          "reasons": [
+            "pit_in",
+            "inaccurate",
+            "yellow_flag"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 11,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 29,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 40,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 41,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
       "policies": {
         "all_usable_laps": {
           "retained_laps": 48,
@@ -6115,9 +7527,15 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 7,
               "lap_numbers": [
-                1
+                1,
+                10,
+                11,
+                28,
+                29,
+                40,
+                41
               ]
             },
             "red_flag": {
@@ -6163,9 +7581,15 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 7,
               "lap_numbers": [
-                1
+                1,
+                10,
+                11,
+                28,
+                29,
+                40,
+                41
               ]
             },
             "red_flag": {
@@ -6211,9 +7635,15 @@
               ]
             },
             "inaccurate": {
-              "count": 1,
+              "count": 7,
               "lap_numbers": [
-                1
+                1,
+                10,
+                11,
+                28,
+                29,
+                40,
+                41
               ]
             },
             "red_flag": {
@@ -6229,8 +7659,11 @@
               "lap_numbers": []
             },
             "yellow_flag": {
-              "count": 0,
-              "lap_numbers": []
+              "count": 2,
+              "lap_numbers": [
+                1,
+                10
+              ]
             }
           }
         }
@@ -6251,6 +7684,10 @@
       "end_lap": 11
     }
   ],
+  "unrecognized_compound_laps": {
+    "count": 0,
+    "by_driver": {}
+  },
   "quality_policy_definitions": {
     "all_usable_laps": "Excludes deleted, inaccurate, and pit in/out laps only. Includes laps affected by yellow flags, Safety Car, and VSC.",
     "representative_race_pace": "As all_usable_laps, additionally excludes laps run under Safety Car, VSC, or a red flag. Yellow-flagged laps are kept.",

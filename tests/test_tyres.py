@@ -80,3 +80,52 @@ def test_compound_performance_normal():
 def test_compound_performance_empty():
     laps = make_laps([])
     assert compound_performance(laps) == []
+
+
+def test_compound_performance_rejects_unrecognized_string():
+    # The real bug found in 2023 Canadian GP data: FastF1 emitted the
+    # literal string "None" for 35 laps, which used to rank FIRST in
+    # compound_performance ahead of real compounds.
+    laps = make_laps(
+        [
+            {"LapNumber": 1, "Compound": "MEDIUM", "LapTime": 90.0},
+            {"LapNumber": 2, "Compound": "MEDIUM", "LapTime": 90.4},
+            {"LapNumber": 3, "Compound": "None", "LapTime": 1.0},  # would rank first if not rejected
+            {"LapNumber": 4, "Compound": "None", "LapTime": 1.0},
+        ]
+    )
+    results = compound_performance(laps)
+    assert [r["compound"] for r in results] == ["MEDIUM"]
+
+
+def test_compound_performance_recognizes_pre_2019_compounds():
+    # 2018 used HYPERSOFT/ULTRASOFT/SUPERSOFT/SUPERHARD naming (verified
+    # empirically against real 2018 FastF1 data, not assumed) - these must
+    # rank normally, not be treated as unrecognized.
+    laps = make_laps(
+        [
+            {"LapNumber": 1, "Compound": "HYPERSOFT", "LapTime": 88.0},
+            {"LapNumber": 2, "Compound": "HYPERSOFT", "LapTime": 88.4},
+            {"LapNumber": 3, "Compound": "SUPERHARD", "LapTime": 92.0},
+            {"LapNumber": 4, "Compound": "SUPERHARD", "LapTime": 92.4},
+        ]
+    )
+    results = compound_performance(laps)
+    assert [r["compound"] for r in results] == ["HYPERSOFT", "SUPERHARD"]
+
+
+def test_compound_performance_excludes_fastf1_unknown_from_ranking():
+    # FastF1's own "UNKNOWN"/"TEST-UNKNOWN" are legitimate values (FastF1
+    # itself doesn't know the compound) but aren't a physical tyre choice,
+    # so they're excluded from a pace *ranking* without being flagged as
+    # unrecognized/invalid data.
+    laps = make_laps(
+        [
+            {"LapNumber": 1, "Compound": "SOFT", "LapTime": 90.0},
+            {"LapNumber": 2, "Compound": "SOFT", "LapTime": 90.4},
+            {"LapNumber": 3, "Compound": "UNKNOWN", "LapTime": 1.0},
+            {"LapNumber": 4, "Compound": "TEST-UNKNOWN", "LapTime": 1.0},
+        ]
+    )
+    results = compound_performance(laps)
+    assert [r["compound"] for r in results] == ["SOFT"]

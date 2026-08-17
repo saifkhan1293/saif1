@@ -212,6 +212,47 @@ def test_result_filename_is_deterministic_and_slugified(fake_session, request_ob
     assert filename == "2024_01_test-grand-prix_R.json"
 
 
+def test_unrecognized_compound_laps_reported_not_silently_dropped(request_obj):
+    # Reproduces the real 2023 Canadian GP defect: a driver with a
+    # genuinely unrecognized Compound value (the literal string "None")
+    # must be counted and reported, not silently absorbed anywhere.
+    results = pd.DataFrame(
+        [{"Abbreviation": "AAA", "DriverNumber": "1", "FullName": "Driver Aaa",
+          "TeamName": "Team A", "GridPosition": 1, "Position": 1, "Status": "Finished"}]
+    )
+    rows = [
+        {"Driver": "AAA", "DriverNumber": "1", "LapNumber": 1, "Compound": "SOFT", "LapTime": 90.0},
+        {"Driver": "AAA", "DriverNumber": "1", "LapNumber": 2, "Compound": "None", "LapTime": 90.5},
+        {"Driver": "AAA", "DriverNumber": "1", "LapNumber": 3, "Compound": "None", "LapTime": 90.6},
+    ]
+    laps = make_laps(rows)
+    event = pd.Series(
+        {"RoundNumber": 1, "EventName": "Test Grand Prix", "Location": "Testville",
+         "Country": "Testland", "EventDate": pd.Timestamp("2024-03-02")}
+    )
+    session = _FakeSession(laps, results, event, pd.Timestamp("2024-03-02T15:00:00"))
+
+    result = build_session_result(session, request_obj)
+    summary = result["unrecognized_compound_laps"]
+    assert summary["count"] == 2
+    assert summary["by_driver"] == {"AAA": [2, 3]}
+
+
+def test_save_result_raises_on_nan_rather_than_writing_invalid_json(tmp_path):
+    # allow_nan=False: a stray NaN reaching serialization must fail loudly
+    # (ValueError, at write time) rather than silently produce a file with
+    # a bare NaN token, which is invalid JSON for a strict parser (e.g. a
+    # browser's JSON.parse).
+    bad_result = {
+        "schema_version": "1.1",
+        "session": {"year": 2024, "round_number": 1, "event_name": "Test GP", "session_type": "R"},
+        "team": float("nan"),  # simulates an unguarded field reaching serialization
+    }
+    with pytest.raises(ValueError):
+        save_result(bad_result, output_dir=tmp_path)
+    assert list(tmp_path.glob("*.json")) == []  # no partial/corrupt file left behind
+
+
 def test_save_result_overwrites_same_path_not_duplicated(fake_session, request_obj, tmp_path):
     result_1 = build_session_result(fake_session, request_obj)
     path_1 = save_result(result_1, output_dir=tmp_path)

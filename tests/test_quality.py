@@ -3,6 +3,7 @@ import pytest
 from saif1.analysis.quality import (
     EXCLUSION_PRECEDENCE,
     all_usable_laps,
+    classify_all_exclusion_reasons,
     classify_lap_exclusion_reason,
     filter_usable_laps,
     green_flag_laps,
@@ -185,31 +186,104 @@ def test_summarize_exclusions_by_policy_cross_checked_against_real_filters():
 
 
 def test_summarize_exclusions_by_policy_reconciliation_invariant():
-    """Secondary check: retained + sum(excluded_by_reason) == total for
-    every policy. Cheap, but not a substitute for the cross-check above.
+    """Secondary check: retained + excluded_laps == total for every
+    policy (excluded_laps counts each excluded lap once, however many
+    reasons applied to it). Cheap, holds by construction, and is NOT a
+    substitute for the cross-check above.
     """
     laps = _mixed_fixture()
     summary = summarize_exclusions_by_policy(laps)
 
     for policy_name, policy in summary["policies"].items():
-        excluded_sum = sum(r["count"] for r in policy["excluded_by_reason"].values())
-        assert policy["retained_laps"] + excluded_sum == summary["laps_recorded"], policy_name
-        assert excluded_sum == policy["excluded_laps"], policy_name
+        assert policy["retained_laps"] + policy["excluded_laps"] == summary["laps_recorded"], policy_name
+
+
+def test_summarize_exclusions_by_policy_is_genuinely_multi_label():
+    """Multi-label means a lap with several applicable reasons is counted
+    under every one of its reason buckets, so the reason-bucket counts can
+    legitimately sum to more than excluded_laps - if they never did, this
+    would just be single-label with extra steps.
+    """
+    laps = _mixed_fixture()
+    summary = summarize_exclusions_by_policy(laps)
+
+    green_flag = summary["policies"]["green_flag_pace"]
+    reason_sum = sum(r["count"] for r in green_flag["excluded_by_reason"].values())
+    # Lap 11 alone contributes to 4 buckets (deleted/pit_in/inaccurate/
+    # safety_car), lap 12 to 2, lap 13 to 2, lap 14 to 2 - so the sum must
+    # exceed the 13 distinct excluded laps.
+    assert reason_sum > green_flag["excluded_laps"]
+
+
+def test_excluded_laps_detail_multi_label_and_primary_reason():
+    laps = _mixed_fixture()
+    summary = summarize_exclusions_by_policy(laps)
+    detail_by_lap = {d["lap_number"]: d for d in summary["excluded_laps_detail"]}
+
+    # Lap 11: deleted + pit_in + inaccurate + safety_car all genuinely
+    # apply - none should be masked by precedence in the detail list.
+    assert detail_by_lap[11]["reasons"] == ["deleted", "pit_in", "inaccurate", "safety_car"]
+    assert detail_by_lap[11]["primary_reason"] == "deleted"
+
+    # Lap 14: safety_car + yellow_flag (TrackStatus "24").
+    assert detail_by_lap[14]["reasons"] == ["safety_car", "yellow_flag"]
+    assert detail_by_lap[14]["primary_reason"] == "safety_car"
+
+    # Clean laps (1, 15) never appear in the detail list at all.
+    assert 1 not in detail_by_lap
+    assert 15 not in detail_by_lap
+
+    # Sorted by lap number.
+    lap_numbers = [d["lap_number"] for d in summary["excluded_laps_detail"]]
+    assert lap_numbers == sorted(lap_numbers)
+
+
+def test_classify_all_exclusion_reasons_returns_every_applicable_reason():
+    laps = _mixed_fixture()
+    row13 = laps[laps["LapNumber"] == 13].iloc[0]
+    # Lap 13: inaccurate + safety_car - classify_lap_exclusion_reason
+    # (single-label) only returns "inaccurate"; the multi-label version
+    # must return both.
+    assert classify_all_exclusion_reasons(row13) == ["inaccurate", "safety_car"]
+    assert classify_lap_exclusion_reason(row13) == "inaccurate"
+
+
+def test_multi_label_does_not_change_cross_check_result():
+    """The multi-label refactor must not change which laps are retained
+    per policy - verified directly (not just argued algebraically) against
+    the same edge-case fixtures used for the Step 1 cross-check.
+    """
+    for rows in (
+        [],
+        [{"LapNumber": n, "Deleted": True} for n in range(1, 6)],
+        [{"LapNumber": n, "IsAccurate": False} for n in range(1, 6)],
+        _MIXED_FIXTURE_ROWS,
+    ):
+        laps = make_laps(rows)
+        summary = summarize_exclusions_by_policy(laps)
+        assert summary["policies"]["all_usable_laps"]["retained_laps"] == len(all_usable_laps(laps))
+        assert summary["policies"]["representative_race_pace"]["retained_laps"] == len(
+            representative_race_pace_laps(laps)
+        )
+        assert summary["policies"]["green_flag_pace"]["retained_laps"] == len(green_flag_laps(laps))
 
 
 def test_summarize_exclusions_by_policy_lap_numbers_correct():
+    """Multi-label: laps 11-14 have more than one applicable reason, so
+    they appear under every bucket that applies to them, not just one.
+    """
     laps = _mixed_fixture()
     summary = summarize_exclusions_by_policy(laps)
 
     reasons = summary["policies"]["green_flag_pace"]["excluded_by_reason"]
     assert reasons["deleted"]["lap_numbers"] == [2, 11]
-    assert reasons["pit_in"]["lap_numbers"] == [3, 12]
+    assert reasons["pit_in"]["lap_numbers"] == [3, 11, 12]
     assert reasons["pit_out"]["lap_numbers"] == [4]
-    assert reasons["inaccurate"]["lap_numbers"] == [5, 13]
+    assert reasons["inaccurate"]["lap_numbers"] == [5, 11, 12, 13]
     assert reasons["red_flag"]["lap_numbers"] == [6]
-    assert reasons["safety_car"]["lap_numbers"] == [7, 14]
+    assert reasons["safety_car"]["lap_numbers"] == [7, 11, 13, 14]
     assert reasons["virtual_safety_car"]["lap_numbers"] == [8, 9]
-    assert reasons["yellow_flag"]["lap_numbers"] == [10]
+    assert reasons["yellow_flag"]["lap_numbers"] == [10, 14]
 
 
 @pytest.mark.parametrize(
