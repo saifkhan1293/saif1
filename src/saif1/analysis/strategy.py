@@ -7,6 +7,7 @@ import logging
 import pandas as pd
 from fastf1.core import Laps, Session
 
+from saif1.config import normalize_compound
 from saif1.exceptions import DriverNotFoundError
 
 logger = logging.getLogger(__name__)
@@ -24,6 +25,13 @@ def extract_pit_stops(laps: Laps) -> list[dict]:
     pit lane travel time, not just the stationary "box" time - FastF1's
     basic timing data does not expose stationary time separately. Treat it
     as an approximation of total time lost, not a precise stop duration.
+
+    `compound_before`/`compound_after` are validated via
+    config.normalize_compound: a real compound name, "UNKNOWN" (FastF1
+    itself doesn't know, or the value was missing), "UNRECOGNIZED" (a
+    non-null value present but not in FastF1's known vocabulary - e.g.
+    corrupted data), or None only when there's no next/out lap at all to
+    read a compound from.
 
     Returns:
         List of dicts ordered by driver then lap:
@@ -48,13 +56,13 @@ def extract_pit_stops(laps: Laps) -> list[dict]:
         compound_after = None
         if out_lap is not None and pd.notna(out_lap.get("PitOutTime")):
             pit_lane_time_s = (out_lap["PitOutTime"] - in_lap["PitInTime"]).total_seconds()
-            compound_after = out_lap.get("Compound")
+            compound_after = normalize_compound(out_lap.get("Compound"))
 
         pit_stops.append(
             {
                 "driver": driver,
                 "in_lap": int(in_lap["LapNumber"]),
-                "compound_before": in_lap.get("Compound"),
+                "compound_before": normalize_compound(in_lap.get("Compound")),
                 "compound_after": compound_after,
                 "pit_lane_time_s": pit_lane_time_s,
             }
