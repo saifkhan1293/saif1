@@ -16,13 +16,14 @@ from pathlib import Path
 # without having installed the package first.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from saif1.analysis.pace import calculate_race_pace, compare_driver_pace  # noqa: E402
+from saif1.analysis.pace import calculate_green_flag_pace, calculate_race_pace, compare_driver_pace  # noqa: E402
 from saif1.analysis.stints import extract_stints  # noqa: E402
 from saif1.analysis.strategy import extract_pit_stops, position_changes  # noqa: E402
 from saif1.analysis.tyres import compound_performance  # noqa: E402
 from saif1.config import SessionRequest  # noqa: E402
 from saif1.data.loader import load_session  # noqa: E402
 from saif1.exceptions import SAIF1Error  # noqa: E402
+from saif1.persistence import DEFAULT_RESULTS_DIR, build_session_result, save_result  # noqa: E402
 from saif1.visualization.charts import (  # noqa: E402
     plot_driver_pace_comparison,
     plot_lap_time_progression,
@@ -49,6 +50,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--output-dir", type=str, default="analysis_output", help="Directory to save charts into"
+    )
+    parser.add_argument(
+        "--results-dir",
+        type=str,
+        default=str(DEFAULT_RESULTS_DIR),
+        help="Directory to save the persisted JSON result into (default: data/results)",
     )
     parser.add_argument("--log-level", type=str, default="INFO")
     return parser.parse_args(argv)
@@ -97,7 +104,8 @@ def main(argv: list[str] | None = None) -> int:
     print(f"\n=== {request.year} {session.event['EventName']} ({request.session_type}) ===")
     print(f"Drivers in focus: {', '.join(drivers)}\n")
 
-    print("--- Race pace ---")
+    print("--- Race pace (representative_race_pace policy: excludes deleted/inaccurate/pit ---")
+    print("--- laps and Safety Car/VSC/red-flag laps; keeps yellow-flagged laps) ---")
     for driver in drivers:
         try:
             stats = calculate_race_pace(laps, driver)
@@ -108,6 +116,19 @@ def main(argv: list[str] | None = None) -> int:
             f"{driver}: median={_fmt_seconds(stats['median_lap_time_s'])} "
             f"mean={_fmt_seconds(stats['mean_lap_time_s'])} "
             f"best={_fmt_seconds(stats['best_lap_time_s'])} "
+            f"usable_laps={stats['usable_laps']}/{stats['total_laps']}"
+        )
+
+    print("\n--- Race pace (green_flag_pace policy: additionally excludes any ---")
+    print("--- yellow-flagged lap - strictest tier, smaller sample) ---")
+    for driver in drivers:
+        try:
+            stats = calculate_green_flag_pace(laps, driver)
+        except SAIF1Error as exc:
+            logger.warning(str(exc))
+            continue
+        print(
+            f"{driver}: median={_fmt_seconds(stats['median_lap_time_s'])} "
             f"usable_laps={stats['usable_laps']}/{stats['total_laps']}"
         )
 
@@ -168,6 +189,11 @@ def main(argv: list[str] | None = None) -> int:
         path = output_dir / filename
         fig.savefig(path, dpi=150)
         print(f"Saved chart: {path}")
+
+    result = build_session_result(session, request)
+    result_path = save_result(result, output_dir=Path(args.results_dir))
+    size_kb = result_path.stat().st_size / 1024
+    print(f"Saved persisted result: {result_path} ({size_kb:.1f} KB)")
 
     return 0
 

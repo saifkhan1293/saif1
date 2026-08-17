@@ -5,6 +5,21 @@ Median is used as the primary representative-pace statistic rather than
 mean, since it is more robust to outlier laps (traffic, minor mistakes)
 that survive the quality filter but still aren't representative of true
 pace.
+
+Two named pace policies are provided (see saif1.analysis.quality for the
+full definitions and saif1.analysis.quality.POLICY_DEFINITIONS for the
+canonical prose descriptions):
+
+- calculate_race_pace() - built on quality.representative_race_pace_laps.
+  Excludes Safety Car / VSC / red-flag laps, keeps yellow-flagged laps.
+  The default, general-purpose pace metric.
+- calculate_green_flag_pace() - built on quality.green_flag_laps.
+  Additionally excludes any yellow-flagged lap. Stricter, smaller sample,
+  for callers who want zero flag interference at all.
+
+Every returned dict includes a "policy" field naming which one produced
+it, so downstream consumers (persisted output, reports, an agent) never
+have to guess which definition of "pace" a number represents.
 """
 
 from __future__ import annotations
@@ -15,7 +30,7 @@ from typing import Optional
 import pandas as pd
 from fastf1.core import Laps
 
-from saif1.analysis.quality import filter_usable_laps
+from saif1.analysis.quality import green_flag_laps, representative_race_pace_laps
 from saif1.exceptions import DriverNotFoundError
 
 logger = logging.getLogger(__name__)
@@ -28,8 +43,29 @@ def lap_time_to_seconds(lap_time: pd.Timedelta) -> Optional[float]:
     return lap_time.total_seconds()
 
 
+def _pace_stats(laps: Laps, driver: str, *, policy_name: str, filter_fn) -> dict:
+    driver_laps = laps.pick_drivers([driver])
+    if driver_laps.empty:
+        raise DriverNotFoundError(f"No lap data found for driver '{driver}'.")
+
+    usable = filter_fn(driver_laps)
+    seconds = usable["LapTime"].dropna().dt.total_seconds()
+
+    return {
+        "driver": driver,
+        "policy": policy_name,
+        "mean_lap_time_s": float(seconds.mean()) if not seconds.empty else None,
+        "median_lap_time_s": float(seconds.median()) if not seconds.empty else None,
+        "best_lap_time_s": float(seconds.min()) if not seconds.empty else None,
+        "usable_laps": int(len(seconds)),
+        "total_laps": int(len(driver_laps)),
+    }
+
+
 def calculate_race_pace(laps: Laps, driver: str) -> dict:
-    """Calculate representative race-pace statistics for one driver.
+    """Calculate representative race-pace statistics for one driver,
+    using the `representative_race_pace` policy (excludes Safety Car,
+    VSC, and red-flag laps; keeps yellow-flagged laps).
 
     Args:
         laps: Full session Laps (e.g. session.laps).
@@ -39,6 +75,7 @@ def calculate_race_pace(laps: Laps, driver: str) -> dict:
     Returns:
         {
             "driver": str,
+            "policy": "representative_race_pace",
             "mean_lap_time_s": float | None,
             "median_lap_time_s": float | None,
             "best_lap_time_s": float | None,
@@ -49,30 +86,37 @@ def calculate_race_pace(laps: Laps, driver: str) -> dict:
     Raises:
         DriverNotFoundError: If the driver has no laps in the session.
     """
-    driver_laps = laps.pick_drivers([driver])
-    if driver_laps.empty:
-        raise DriverNotFoundError(f"No lap data found for driver '{driver}'.")
+    return _pace_stats(
+        laps, driver, policy_name="representative_race_pace", filter_fn=representative_race_pace_laps
+    )
 
-    usable = filter_usable_laps(driver_laps)
-    seconds = usable["LapTime"].dropna().dt.total_seconds()
 
-    return {
-        "driver": driver,
-        "mean_lap_time_s": float(seconds.mean()) if not seconds.empty else None,
-        "median_lap_time_s": float(seconds.median()) if not seconds.empty else None,
-        "best_lap_time_s": float(seconds.min()) if not seconds.empty else None,
-        "usable_laps": int(len(seconds)),
-        "total_laps": int(len(driver_laps)),
-    }
+def calculate_green_flag_pace(laps: Laps, driver: str) -> dict:
+    """Calculate race-pace statistics for one driver using the stricter
+    `green_flag_pace` policy: excludes any lap carrying a yellow-flag
+    status anywhere on the lap, in addition to Safety Car/VSC/red-flag
+    laps. See quality.green_flag_laps for why this is a deliberately
+    strict policy rather than a claim that yellow-affected laps are
+    inherently invalid.
+
+    Same return shape as calculate_race_pace, with
+    "policy": "green_flag_pace".
+
+    Raises:
+        DriverNotFoundError: If the driver has no laps in the session.
+    """
+    return _pace_stats(laps, driver, policy_name="green_flag_pace", filter_fn=green_flag_laps)
 
 
 def compare_driver_pace(laps: Laps, driver_1: str, driver_2: str) -> dict:
-    """Compare representative race pace between two drivers.
+    """Compare representative race pace (the `representative_race_pace`
+    policy) between two drivers.
 
     Returns:
         {
             "driver_1": str,
             "driver_2": str,
+            "policy": "representative_race_pace",
             "median_pace_difference_s": float | None,
             "mean_pace_difference_s": float | None,
             "usable_laps_driver_1": int,
@@ -96,6 +140,7 @@ def compare_driver_pace(laps: Laps, driver_1: str, driver_2: str) -> dict:
     return {
         "driver_1": driver_1,
         "driver_2": driver_2,
+        "policy": "representative_race_pace",
         "median_pace_difference_s": median_diff,
         "mean_pace_difference_s": mean_diff,
         "usable_laps_driver_1": stats_1["usable_laps"],
