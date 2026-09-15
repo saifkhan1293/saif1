@@ -1,0 +1,7294 @@
+{
+  "schema_version": "1.1",
+  "provenance": {
+    "data_source": "FastF1",
+    "fastf1_version": "3.8.3",
+    "saif1_methodology_version": "1.5.1",
+    "generated_at": "2026-09-15T15:19:55.794720+00:00",
+    "session_identifier": "2024-12-R"
+  },
+  "session": {
+    "year": 2024,
+    "event_name": "British Grand Prix",
+    "round_number": 12,
+    "session_type": "R",
+    "location": "Silverstone",
+    "country": "United Kingdom",
+    "event_date": "2024-07-07",
+    "session_date": "2024-07-07T14:00:00"
+  },
+  "drivers": [
+    {
+      "driver": "HAM",
+      "driver_number": "44",
+      "full_name": "Lewis Hamilton",
+      "team": "Mercedes",
+      "grid_position": 2,
+      "finish_position": 1,
+      "status": "Finished"
+    },
+    {
+      "driver": "VER",
+      "driver_number": "1",
+      "full_name": "Max Verstappen",
+      "team": "Red Bull Racing",
+      "grid_position": 4,
+      "finish_position": 2,
+      "status": "Finished"
+    },
+    {
+      "driver": "NOR",
+      "driver_number": "4",
+      "full_name": "Lando Norris",
+      "team": "McLaren",
+      "grid_position": 3,
+      "finish_position": 3,
+      "status": "Finished"
+    },
+    {
+      "driver": "PIA",
+      "driver_number": "81",
+      "full_name": "Oscar Piastri",
+      "team": "McLaren",
+      "grid_position": 5,
+      "finish_position": 4,
+      "status": "Finished"
+    },
+    {
+      "driver": "SAI",
+      "driver_number": "55",
+      "full_name": "Carlos Sainz",
+      "team": "Ferrari",
+      "grid_position": 7,
+      "finish_position": 5,
+      "status": "Finished"
+    },
+    {
+      "driver": "HUL",
+      "driver_number": "27",
+      "full_name": "Nico Hulkenberg",
+      "team": "Haas F1 Team",
+      "grid_position": 6,
+      "finish_position": 6,
+      "status": "Finished"
+    },
+    {
+      "driver": "STR",
+      "driver_number": "18",
+      "full_name": "Lance Stroll",
+      "team": "Aston Martin",
+      "grid_position": 8,
+      "finish_position": 7,
+      "status": "Finished"
+    },
+    {
+      "driver": "ALO",
+      "driver_number": "14",
+      "full_name": "Fernando Alonso",
+      "team": "Aston Martin",
+      "grid_position": 10,
+      "finish_position": 8,
+      "status": "Finished"
+    },
+    {
+      "driver": "ALB",
+      "driver_number": "23",
+      "full_name": "Alexander Albon",
+      "team": "Williams",
+      "grid_position": 9,
+      "finish_position": 9,
+      "status": "Finished"
+    },
+    {
+      "driver": "TSU",
+      "driver_number": "22",
+      "full_name": "Yuki Tsunoda",
+      "team": "RB",
+      "grid_position": 13,
+      "finish_position": 10,
+      "status": "Finished"
+    },
+    {
+      "driver": "SAR",
+      "driver_number": "2",
+      "full_name": "Logan Sargeant",
+      "team": "Williams",
+      "grid_position": 12,
+      "finish_position": 11,
+      "status": "Finished"
+    },
+    {
+      "driver": "MAG",
+      "driver_number": "20",
+      "full_name": "Kevin Magnussen",
+      "team": "Haas F1 Team",
+      "grid_position": 17,
+      "finish_position": 12,
+      "status": "Finished"
+    },
+    {
+      "driver": "RIC",
+      "driver_number": "3",
+      "full_name": "Daniel Ricciardo",
+      "team": "RB",
+      "grid_position": 15,
+      "finish_position": 13,
+      "status": "Lapped"
+    },
+    {
+      "driver": "LEC",
+      "driver_number": "16",
+      "full_name": "Charles Leclerc",
+      "team": "Ferrari",
+      "grid_position": 11,
+      "finish_position": 14,
+      "status": "Lapped"
+    },
+    {
+      "driver": "BOT",
+      "driver_number": "77",
+      "full_name": "Valtteri Bottas",
+      "team": "Kick Sauber",
+      "grid_position": 16,
+      "finish_position": 15,
+      "status": "Lapped"
+    },
+    {
+      "driver": "OCO",
+      "driver_number": "31",
+      "full_name": "Esteban Ocon",
+      "team": "Alpine",
+      "grid_position": 18,
+      "finish_position": 16,
+      "status": "Lapped"
+    },
+    {
+      "driver": "PER",
+      "driver_number": "11",
+      "full_name": "Sergio Perez",
+      "team": "Red Bull Racing",
+      "grid_position": 20,
+      "finish_position": 17,
+      "status": "Lapped"
+    },
+    {
+      "driver": "ZHO",
+      "driver_number": "24",
+      "full_name": "Guanyu Zhou",
+      "team": "Kick Sauber",
+      "grid_position": 14,
+      "finish_position": 18,
+      "status": "Lapped"
+    },
+    {
+      "driver": "RUS",
+      "driver_number": "63",
+      "full_name": "George Russell",
+      "team": "Mercedes",
+      "grid_position": 1,
+      "finish_position": 19,
+      "status": "Retired"
+    },
+    {
+      "driver": "GAS",
+      "driver_number": "10",
+      "full_name": "Pierre Gasly",
+      "team": "Alpine",
+      "grid_position": 19,
+      "finish_position": 20,
+      "status": "Did not start"
+    }
+  ],
+  "race_pace": {
+    "representative_race_pace": [
+      {
+        "driver": "HAM",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 93.62295652173913,
+        "median_lap_time_s": 91.655,
+        "best_lap_time_s": 89.438,
+        "usable_laps": 46,
+        "total_laps": 52
+      },
+      {
+        "driver": "VER",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 93.97614893617023,
+        "median_lap_time_s": 91.933,
+        "best_lap_time_s": 88.952,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "NOR",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 93.96191304347825,
+        "median_lap_time_s": 91.789,
+        "best_lap_time_s": 89.262,
+        "usable_laps": 46,
+        "total_laps": 52
+      },
+      {
+        "driver": "PIA",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 93.948,
+        "median_lap_time_s": 91.896,
+        "best_lap_time_s": 88.748,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "SAI",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 94.39447727272727,
+        "median_lap_time_s": 92.3605,
+        "best_lap_time_s": 88.293,
+        "usable_laps": 44,
+        "total_laps": 52
+      },
+      {
+        "driver": "HUL",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 95.00278723404254,
+        "median_lap_time_s": 92.672,
+        "best_lap_time_s": 89.836,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "STR",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 95.07093617021276,
+        "median_lap_time_s": 92.716,
+        "best_lap_time_s": 89.897,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "ALO",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 94.8788085106383,
+        "median_lap_time_s": 92.673,
+        "best_lap_time_s": 89.71,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "ALB",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 94.52993333333333,
+        "median_lap_time_s": 92.981,
+        "best_lap_time_s": 89.718,
+        "usable_laps": 45,
+        "total_laps": 52
+      },
+      {
+        "driver": "TSU",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 95.2419574468085,
+        "median_lap_time_s": 93.031,
+        "best_lap_time_s": 90.229,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "SAR",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 95.37504347826088,
+        "median_lap_time_s": 93.02950000000001,
+        "best_lap_time_s": 89.972,
+        "usable_laps": 46,
+        "total_laps": 52
+      },
+      {
+        "driver": "MAG",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 95.12634042553192,
+        "median_lap_time_s": 93.204,
+        "best_lap_time_s": 90.093,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "RIC",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 95.53711111111112,
+        "median_lap_time_s": 93.263,
+        "best_lap_time_s": 90.735,
+        "usable_laps": 45,
+        "total_laps": 51
+      },
+      {
+        "driver": "LEC",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 95.46004651162791,
+        "median_lap_time_s": 92.697,
+        "best_lap_time_s": 89.748,
+        "usable_laps": 43,
+        "total_laps": 51
+      },
+      {
+        "driver": "BOT",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 96.15380434782608,
+        "median_lap_time_s": 93.87700000000001,
+        "best_lap_time_s": 91.277,
+        "usable_laps": 46,
+        "total_laps": 51
+      },
+      {
+        "driver": "OCO",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 96.48714634146343,
+        "median_lap_time_s": 94.491,
+        "best_lap_time_s": 90.875,
+        "usable_laps": 41,
+        "total_laps": 50
+      },
+      {
+        "driver": "PER",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 96.80021951219511,
+        "median_lap_time_s": 93.219,
+        "best_lap_time_s": 89.707,
+        "usable_laps": 41,
+        "total_laps": 50
+      },
+      {
+        "driver": "ZHO",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 97.55578048780487,
+        "median_lap_time_s": 95.012,
+        "best_lap_time_s": 91.014,
+        "usable_laps": 41,
+        "total_laps": 50
+      },
+      {
+        "driver": "RUS",
+        "policy": "representative_race_pace",
+        "mean_lap_time_s": 94.07335714285716,
+        "median_lap_time_s": 91.6895,
+        "best_lap_time_s": 91.298,
+        "usable_laps": 28,
+        "total_laps": 33
+      }
+    ],
+    "green_flag_pace": [
+      {
+        "driver": "HAM",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 93.62295652173913,
+        "median_lap_time_s": 91.655,
+        "best_lap_time_s": 89.438,
+        "usable_laps": 46,
+        "total_laps": 52
+      },
+      {
+        "driver": "VER",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 93.97614893617023,
+        "median_lap_time_s": 91.933,
+        "best_lap_time_s": 88.952,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "NOR",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 93.96191304347825,
+        "median_lap_time_s": 91.789,
+        "best_lap_time_s": 89.262,
+        "usable_laps": 46,
+        "total_laps": 52
+      },
+      {
+        "driver": "PIA",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 93.948,
+        "median_lap_time_s": 91.896,
+        "best_lap_time_s": 88.748,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "SAI",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 94.39447727272727,
+        "median_lap_time_s": 92.3605,
+        "best_lap_time_s": 88.293,
+        "usable_laps": 44,
+        "total_laps": 52
+      },
+      {
+        "driver": "HUL",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 95.00278723404254,
+        "median_lap_time_s": 92.672,
+        "best_lap_time_s": 89.836,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "STR",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 95.07093617021276,
+        "median_lap_time_s": 92.716,
+        "best_lap_time_s": 89.897,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "ALO",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 94.8788085106383,
+        "median_lap_time_s": 92.673,
+        "best_lap_time_s": 89.71,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "ALB",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 94.52993333333333,
+        "median_lap_time_s": 92.981,
+        "best_lap_time_s": 89.718,
+        "usable_laps": 45,
+        "total_laps": 52
+      },
+      {
+        "driver": "TSU",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 95.2419574468085,
+        "median_lap_time_s": 93.031,
+        "best_lap_time_s": 90.229,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "SAR",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 95.37504347826088,
+        "median_lap_time_s": 93.02950000000001,
+        "best_lap_time_s": 89.972,
+        "usable_laps": 46,
+        "total_laps": 52
+      },
+      {
+        "driver": "MAG",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 95.12634042553192,
+        "median_lap_time_s": 93.204,
+        "best_lap_time_s": 90.093,
+        "usable_laps": 47,
+        "total_laps": 52
+      },
+      {
+        "driver": "RIC",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 95.53711111111112,
+        "median_lap_time_s": 93.263,
+        "best_lap_time_s": 90.735,
+        "usable_laps": 45,
+        "total_laps": 51
+      },
+      {
+        "driver": "LEC",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 95.46004651162791,
+        "median_lap_time_s": 92.697,
+        "best_lap_time_s": 89.748,
+        "usable_laps": 43,
+        "total_laps": 51
+      },
+      {
+        "driver": "BOT",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 96.15380434782608,
+        "median_lap_time_s": 93.87700000000001,
+        "best_lap_time_s": 91.277,
+        "usable_laps": 46,
+        "total_laps": 51
+      },
+      {
+        "driver": "OCO",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 96.48714634146343,
+        "median_lap_time_s": 94.491,
+        "best_lap_time_s": 90.875,
+        "usable_laps": 41,
+        "total_laps": 50
+      },
+      {
+        "driver": "PER",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 96.80021951219511,
+        "median_lap_time_s": 93.219,
+        "best_lap_time_s": 89.707,
+        "usable_laps": 41,
+        "total_laps": 50
+      },
+      {
+        "driver": "ZHO",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 97.55578048780487,
+        "median_lap_time_s": 95.012,
+        "best_lap_time_s": 91.014,
+        "usable_laps": 41,
+        "total_laps": 50
+      },
+      {
+        "driver": "RUS",
+        "policy": "green_flag_pace",
+        "mean_lap_time_s": 94.07335714285716,
+        "median_lap_time_s": 91.6895,
+        "best_lap_time_s": 91.298,
+        "usable_laps": 28,
+        "total_laps": 33
+      }
+    ]
+  },
+  "stints": [
+    {
+      "driver": "ALB",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        101.588,
+        93.158,
+        93.373,
+        93.059,
+        92.846,
+        93.014,
+        92.939,
+        92.798,
+        92.933,
+        93.073,
+        92.981,
+        92.567,
+        92.769,
+        92.538,
+        92.265,
+        93.178,
+        94.873,
+        95.323,
+        104.619,
+        96.53,
+        93.646,
+        93.086,
+        92.891,
+        93.96,
+        95.612,
+        103.771,
+        107.754
+      ]
+    },
+    {
+      "driver": "ALB",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 38,
+      "stint_length": 11,
+      "lap_times_s": [
+        128.459,
+        101.726,
+        103.271,
+        103.229,
+        104.304,
+        104.82,
+        105.216,
+        105.202,
+        103.075,
+        100.273,
+        97.843
+      ]
+    },
+    {
+      "driver": "ALB",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "start_lap": 39,
+      "end_lap": 52,
+      "stint_length": 14,
+      "lap_times_s": [
+        117.678,
+        90.889,
+        90.715,
+        90.458,
+        90.126,
+        90.74,
+        90.406,
+        90.234,
+        90.148,
+        90.068,
+        89.96,
+        89.828,
+        89.916,
+        89.718
+      ]
+    },
+    {
+      "driver": "ALO",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        100.474,
+        93.202,
+        92.951,
+        93.192,
+        92.617,
+        92.673,
+        92.712,
+        92.496,
+        92.579,
+        92.741,
+        92.548,
+        92.427,
+        92.517,
+        92.383,
+        92.259,
+        92.59,
+        95.014,
+        95.88,
+        107.27,
+        96.48,
+        92.999,
+        92.673,
+        92.593,
+        94.088,
+        95.687,
+        103.618,
+        108.513
+      ]
+    },
+    {
+      "driver": "ALO",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 38,
+      "stint_length": 11,
+      "lap_times_s": [
+        124.427,
+        103.072,
+        102.577,
+        102.796,
+        103.69,
+        104.262,
+        104.375,
+        104.251,
+        102.513,
+        100.747,
+        98.684
+      ]
+    },
+    {
+      "driver": "ALO",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "start_lap": 39,
+      "end_lap": 52,
+      "stint_length": 14,
+      "lap_times_s": [
+        119.234,
+        91.146,
+        90.594,
+        90.167,
+        90.098,
+        89.93,
+        89.871,
+        89.753,
+        89.71,
+        90.114,
+        90.7,
+        90.727,
+        90.592,
+        91.43
+      ]
+    },
+    {
+      "driver": "BOT",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 26,
+      "stint_length": 26,
+      "lap_times_s": [
+        104.29,
+        95.368,
+        94.447,
+        94.322,
+        93.768,
+        93.46,
+        93.648,
+        93.561,
+        93.645,
+        93.787,
+        93.561,
+        93.269,
+        93.65,
+        93.156,
+        93.228,
+        93.967,
+        95.498,
+        96.075,
+        104.426,
+        98.542,
+        95.235,
+        94.03,
+        94.076,
+        97.35,
+        99.761,
+        109.533
+      ]
+    },
+    {
+      "driver": "BOT",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 37,
+      "stint_length": 11,
+      "lap_times_s": [
+        125.367,
+        102.562,
+        103.302,
+        103.472,
+        104.51,
+        105.199,
+        105.552,
+        105.199,
+        105.476,
+        102.968,
+        99.987
+      ]
+    },
+    {
+      "driver": "BOT",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 38,
+      "end_lap": 51,
+      "stint_length": 14,
+      "lap_times_s": [
+        126.628,
+        97.114,
+        92.973,
+        93.344,
+        92.348,
+        91.732,
+        91.277,
+        93.159,
+        91.396,
+        91.431,
+        92.006,
+        91.688,
+        92.32,
+        92.217
+      ]
+    },
+    {
+      "driver": "HAM",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        96.034,
+        91.42,
+        91.716,
+        91.988,
+        91.677,
+        91.746,
+        91.675,
+        91.76,
+        91.564,
+        91.515,
+        91.487,
+        91.563,
+        91.881,
+        91.609,
+        91.563,
+        91.931,
+        93.721,
+        95.071,
+        103.711,
+        100.021,
+        92.156,
+        91.095,
+        91.107,
+        91.635,
+        94.988,
+        100.792,
+        105.183
+      ]
+    },
+    {
+      "driver": "HAM",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 38,
+      "stint_length": 11,
+      "lap_times_s": [
+        120.866,
+        100.42,
+        100.467,
+        101.538,
+        102.475,
+        102.435,
+        102.757,
+        102.271,
+        101.924,
+        99.711,
+        97.22
+      ]
+    },
+    {
+      "driver": "HAM",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 39,
+      "end_lap": 52,
+      "stint_length": 14,
+      "lap_times_s": [
+        117.389,
+        90.318,
+        90.118,
+        89.617,
+        89.793,
+        89.697,
+        89.438,
+        89.641,
+        89.538,
+        89.579,
+        89.667,
+        89.682,
+        89.743,
+        90.146
+      ]
+    },
+    {
+      "driver": "HUL",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 26,
+      "stint_length": 26,
+      "lap_times_s": [
+        100.166,
+        92.844,
+        92.605,
+        92.563,
+        92.768,
+        92.697,
+        92.733,
+        92.802,
+        92.396,
+        92.439,
+        92.428,
+        92.401,
+        92.468,
+        92.621,
+        92.672,
+        93.194,
+        95.447,
+        95.834,
+        105.752,
+        97.529,
+        92.649,
+        92.233,
+        92.612,
+        93.352,
+        95.918,
+        101.853
+      ]
+    },
+    {
+      "driver": "HUL",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 39,
+      "stint_length": 13,
+      "lap_times_s": [
+        122.727,
+        101.897,
+        102.641,
+        102.811,
+        103.274,
+        104.134,
+        103.685,
+        104.263,
+        104.042,
+        103.044,
+        100.657,
+        98.854,
+        97.245
+      ]
+    },
+    {
+      "driver": "HUL",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 40,
+      "end_lap": 52,
+      "stint_length": 13,
+      "lap_times_s": [
+        115.659,
+        91.097,
+        90.701,
+        89.836,
+        90.392,
+        90.048,
+        90.185,
+        89.864,
+        90.365,
+        90.371,
+        90.47,
+        90.696,
+        90.847
+      ]
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 19,
+      "stint_length": 19,
+      "lap_times_s": [
+        99.663,
+        92.858,
+        92.369,
+        92.705,
+        92.697,
+        92.758,
+        92.662,
+        92.86,
+        92.326,
+        92.496,
+        92.348,
+        92.236,
+        91.989,
+        92.396,
+        92.755,
+        92.923,
+        95.28,
+        95.951,
+        105.868
+      ]
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 20,
+      "end_lap": 27,
+      "stint_length": 8,
+      "lap_times_s": [
+        120.269,
+        102.846,
+        104.352,
+        106.593,
+        111.732,
+        109.301,
+        105.655,
+        105.912
+      ]
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 3,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 37,
+      "stint_length": 10,
+      "lap_times_s": [
+        123.138,
+        101.602,
+        102.299,
+        103.95,
+        103.795,
+        103.217,
+        103.604,
+        102.415,
+        100.091,
+        98.357
+      ]
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 4,
+      "compound": "SOFT",
+      "start_lap": 38,
+      "end_lap": 51,
+      "stint_length": 14,
+      "lap_times_s": [
+        117.811,
+        91.481,
+        90.878,
+        90.035,
+        89.832,
+        89.748,
+        89.933,
+        89.911,
+        90.051,
+        90.289,
+        90.204,
+        90.929,
+        90.488,
+        91.674
+      ]
+    },
+    {
+      "driver": "MAG",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        103.681,
+        94.216,
+        93.259,
+        93.11,
+        92.999,
+        93.544,
+        93.734,
+        93.204,
+        92.783,
+        92.647,
+        92.671,
+        92.531,
+        92.74,
+        92.506,
+        92.953,
+        93.486,
+        94.661,
+        94.73,
+        103.505,
+        95.181,
+        93.484,
+        92.766,
+        93.278,
+        93.625,
+        95.15,
+        105.466,
+        111.325
+      ]
+    },
+    {
+      "driver": "MAG",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 37,
+      "stint_length": 10,
+      "lap_times_s": [
+        125.299,
+        102.842,
+        102.133,
+        104.06,
+        105.084,
+        105.266,
+        106.135,
+        105.557,
+        103.611,
+        102.038
+      ]
+    },
+    {
+      "driver": "MAG",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 38,
+      "end_lap": 52,
+      "stint_length": 15,
+      "lap_times_s": [
+        123.931,
+        93.212,
+        92.071,
+        90.61,
+        90.093,
+        90.454,
+        91.342,
+        91.722,
+        91.131,
+        91.036,
+        90.953,
+        90.803,
+        91.143,
+        91.469,
+        91.982
+      ]
+    },
+    {
+      "driver": "NOR",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        97.347,
+        92.188,
+        91.991,
+        91.976,
+        91.716,
+        91.896,
+        92.071,
+        92.018,
+        91.976,
+        91.83,
+        91.748,
+        91.718,
+        91.472,
+        91.407,
+        90.946,
+        91.69,
+        94.304,
+        94.125,
+        101.436,
+        97.704,
+        91.513,
+        90.86,
+        91.176,
+        91.629,
+        94.307,
+        101.515,
+        104.806
+      ]
+    },
+    {
+      "driver": "NOR",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 39,
+      "stint_length": 12,
+      "lap_times_s": [
+        120.915,
+        100.266,
+        100.717,
+        101.313,
+        102.216,
+        102.607,
+        103.078,
+        102.935,
+        102.34,
+        99.786,
+        97.999,
+        96.746
+      ]
+    },
+    {
+      "driver": "NOR",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 40,
+      "end_lap": 52,
+      "stint_length": 13,
+      "lap_times_s": [
+        114.84,
+        89.733,
+        90.006,
+        89.262,
+        89.752,
+        89.635,
+        89.96,
+        89.838,
+        90.556,
+        90.515,
+        90.544,
+        90.769,
+        90.913
+      ]
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 1,
+      "compound": "SOFT",
+      "start_lap": 1,
+      "end_lap": 19,
+      "stint_length": 19,
+      "lap_times_s": [
+        103.052,
+        93.846,
+        93.479,
+        93.316,
+        93.21,
+        93.616,
+        95.183,
+        93.79,
+        93.898,
+        93.843,
+        93.846,
+        94.071,
+        94.491,
+        95.293,
+        94.884,
+        96.522,
+        98.735,
+        98.497,
+        101.731
+      ]
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 20,
+      "end_lap": 21,
+      "stint_length": 2,
+      "lap_times_s": [
+        121.025,
+        99.736
+      ]
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "start_lap": 22,
+      "end_lap": 26,
+      "stint_length": 5,
+      "lap_times_s": [
+        115.208,
+        95.488,
+        98.005,
+        107.432,
+        118.71
+      ]
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 4,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 38,
+      "stint_length": 12,
+      "lap_times_s": [
+        122.736,
+        101.716,
+        102.362,
+        103.336,
+        104.019,
+        104.673,
+        105.29,
+        105.511,
+        102.995,
+        101.215,
+        102.235,
+        99.44
+      ]
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 5,
+      "compound": "MEDIUM",
+      "start_lap": 39,
+      "end_lap": 50,
+      "stint_length": 12,
+      "lap_times_s": [
+        120.13,
+        92.838,
+        91.114,
+        91.187,
+        91.084,
+        90.928,
+        90.952,
+        90.875,
+        93.599,
+        95.931,
+        91.06,
+        91.608
+      ]
+    },
+    {
+      "driver": "PER",
+      "stint_number": 1,
+      "compound": "HARD",
+      "start_lap": 1,
+      "end_lap": 19,
+      "stint_length": 19,
+      "lap_times_s": [
+        109.458,
+        92.942,
+        92.34,
+        92.57,
+        92.111,
+        92.25,
+        93.313,
+        93.407,
+        92.8,
+        92.709,
+        92.491,
+        92.509,
+        92.772,
+        92.488,
+        92.702,
+        94.231,
+        94.829,
+        95.384,
+        101.868
+      ]
+    },
+    {
+      "driver": "PER",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 20,
+      "end_lap": 28,
+      "stint_length": 9,
+      "lap_times_s": [
+        119.15,
+        101.997,
+        104.936,
+        106.214,
+        110.729,
+        107.327,
+        105.736,
+        112.538,
+        105.224
+      ]
+    },
+    {
+      "driver": "PER",
+      "stint_number": 3,
+      "compound": "INTERMEDIATE",
+      "start_lap": 29,
+      "end_lap": 37,
+      "stint_length": 9,
+      "lap_times_s": [
+        124.385,
+        100.021,
+        102.676,
+        104.035,
+        104.641,
+        105.045,
+        103.534,
+        101.845,
+        99.697
+      ]
+    },
+    {
+      "driver": "PER",
+      "stint_number": 4,
+      "compound": "MEDIUM",
+      "start_lap": 38,
+      "end_lap": 47,
+      "stint_length": 10,
+      "lap_times_s": [
+        120.171,
+        92.722,
+        93.219,
+        90.689,
+        90.542,
+        90.229,
+        90.518,
+        90.565,
+        90.136,
+        90.795
+      ]
+    },
+    {
+      "driver": "PER",
+      "stint_number": 5,
+      "compound": "SOFT",
+      "start_lap": 48,
+      "end_lap": 50,
+      "stint_length": 3,
+      "lap_times_s": [
+        125.507,
+        97.36,
+        89.707
+      ]
+    },
+    {
+      "driver": "PIA",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 28,
+      "stint_length": 28,
+      "lap_times_s": [
+        98.008,
+        92.361,
+        91.927,
+        91.919,
+        91.832,
+        92.062,
+        91.925,
+        91.994,
+        92.0,
+        91.811,
+        91.855,
+        91.663,
+        91.896,
+        91.697,
+        91.514,
+        92.118,
+        93.988,
+        94.269,
+        100.728,
+        97.348,
+        91.819,
+        91.169,
+        90.976,
+        91.392,
+        94.271,
+        100.622,
+        109.747,
+        112.976
+      ]
+    },
+    {
+      "driver": "PIA",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 29,
+      "end_lap": 38,
+      "stint_length": 10,
+      "lap_times_s": [
+        121.184,
+        100.492,
+        102.161,
+        103.137,
+        103.325,
+        103.954,
+        103.309,
+        102.52,
+        99.635,
+        97.106
+      ]
+    },
+    {
+      "driver": "PIA",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "start_lap": 39,
+      "end_lap": 52,
+      "stint_length": 14,
+      "lap_times_s": [
+        114.658,
+        89.913,
+        89.574,
+        89.581,
+        89.286,
+        89.221,
+        89.222,
+        89.233,
+        89.049,
+        89.124,
+        89.283,
+        89.958,
+        88.748,
+        89.928
+      ]
+    },
+    {
+      "driver": "RIC",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 26,
+      "stint_length": 26,
+      "lap_times_s": [
+        102.715,
+        93.709,
+        93.429,
+        93.253,
+        93.263,
+        93.666,
+        92.952,
+        93.095,
+        92.762,
+        92.721,
+        92.804,
+        92.797,
+        92.88,
+        92.933,
+        93.171,
+        94.437,
+        95.885,
+        96.827,
+        104.922,
+        97.33,
+        94.722,
+        93.015,
+        94.224,
+        96.483,
+        98.725,
+        104.813
+      ]
+    },
+    {
+      "driver": "RIC",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 37,
+      "stint_length": 11,
+      "lap_times_s": [
+        122.788,
+        103.338,
+        103.377,
+        103.298,
+        103.699,
+        104.144,
+        104.855,
+        105.969,
+        105.535,
+        103.213,
+        100.483
+      ]
+    },
+    {
+      "driver": "RIC",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 38,
+      "end_lap": 51,
+      "stint_length": 14,
+      "lap_times_s": [
+        123.328,
+        93.138,
+        92.428,
+        91.289,
+        90.765,
+        91.198,
+        91.08,
+        90.955,
+        90.849,
+        90.735,
+        91.109,
+        92.926,
+        94.15,
+        94.814
+      ]
+    },
+    {
+      "driver": "RUS",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        95.211,
+        91.418,
+        91.298,
+        91.799,
+        91.628,
+        91.625,
+        91.663,
+        91.731,
+        91.621,
+        91.639,
+        91.586,
+        91.619,
+        91.716,
+        91.478,
+        91.566,
+        91.626,
+        94.793,
+        96.365,
+        104.151,
+        99.962,
+        92.753,
+        91.344,
+        91.497,
+        91.968,
+        94.781,
+        99.949,
+        107.698
+      ]
+    },
+    {
+      "driver": "RUS",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 33,
+      "stint_length": 6,
+      "lap_times_s": [
+        124.342,
+        100.405,
+        101.237,
+        101.902,
+        103.085,
+        106.221
+      ]
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 26,
+      "stint_length": 26,
+      "lap_times_s": [
+        98.699,
+        92.359,
+        92.102,
+        92.045,
+        91.939,
+        91.9,
+        92.702,
+        92.372,
+        92.484,
+        92.362,
+        92.123,
+        92.358,
+        92.251,
+        92.106,
+        91.916,
+        92.455,
+        94.228,
+        94.31,
+        100.51,
+        96.538,
+        93.507,
+        92.157,
+        92.297,
+        92.734,
+        95.143,
+        102.481
+      ]
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 39,
+      "stint_length": 13,
+      "lap_times_s": [
+        121.664,
+        102.641,
+        102.447,
+        102.737,
+        103.007,
+        103.298,
+        103.201,
+        102.794,
+        103.59,
+        102.748,
+        100.432,
+        98.37,
+        96.802
+      ]
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 3,
+      "compound": "HARD",
+      "start_lap": 40,
+      "end_lap": 50,
+      "stint_length": 11,
+      "lap_times_s": [
+        116.753,
+        90.475,
+        89.872,
+        89.872,
+        89.739,
+        89.589,
+        89.588,
+        89.553,
+        89.415,
+        89.439,
+        89.434
+      ]
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 4,
+      "compound": "SOFT",
+      "start_lap": 51,
+      "end_lap": 52,
+      "stint_length": 2,
+      "lap_times_s": [
+        112.546,
+        88.293
+      ]
+    },
+    {
+      "driver": "SAR",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        101.772,
+        93.435,
+        93.319,
+        93.11,
+        93.139,
+        92.904,
+        93.002,
+        92.806,
+        93.019,
+        92.956,
+        92.897,
+        92.748,
+        93.04,
+        92.607,
+        92.543,
+        93.701,
+        95.258,
+        94.9,
+        104.09,
+        96.116,
+        93.632,
+        92.826,
+        94.494,
+        94.037,
+        96.166,
+        104.642,
+        112.246
+      ]
+    },
+    {
+      "driver": "SAR",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 38,
+      "stint_length": 11,
+      "lap_times_s": [
+        125.981,
+        102.215,
+        102.476,
+        104.332,
+        104.912,
+        105.684,
+        106.095,
+        105.851,
+        103.365,
+        102.207,
+        98.811
+      ]
+    },
+    {
+      "driver": "SAR",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 39,
+      "end_lap": 52,
+      "stint_length": 14,
+      "lap_times_s": [
+        116.256,
+        91.353,
+        90.875,
+        89.972,
+        90.162,
+        90.003,
+        90.613,
+        90.826,
+        91.25,
+        91.201,
+        91.175,
+        91.249,
+        91.662,
+        92.088
+      ]
+    },
+    {
+      "driver": "STR",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 26,
+      "stint_length": 26,
+      "lap_times_s": [
+        99.108,
+        92.683,
+        92.307,
+        92.968,
+        92.706,
+        92.788,
+        92.716,
+        92.648,
+        92.291,
+        92.619,
+        92.273,
+        92.362,
+        93.092,
+        92.641,
+        92.649,
+        93.091,
+        95.713,
+        95.789,
+        107.568,
+        97.491,
+        93.291,
+        92.495,
+        93.062,
+        94.585,
+        95.351,
+        100.784
+      ]
+    },
+    {
+      "driver": "STR",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 39,
+      "stint_length": 13,
+      "lap_times_s": [
+        121.611,
+        102.187,
+        102.992,
+        103.066,
+        103.714,
+        104.545,
+        104.213,
+        104.171,
+        104.422,
+        103.0,
+        100.825,
+        99.373,
+        97.759
+      ]
+    },
+    {
+      "driver": "STR",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "start_lap": 40,
+      "end_lap": 52,
+      "stint_length": 13,
+      "lap_times_s": [
+        116.032,
+        90.098,
+        90.161,
+        90.196,
+        90.03,
+        90.025,
+        89.897,
+        89.925,
+        90.237,
+        89.969,
+        90.03,
+        90.026,
+        90.053
+      ]
+    },
+    {
+      "driver": "TSU",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 27,
+      "stint_length": 27,
+      "lap_times_s": [
+        101.109,
+        93.214,
+        93.062,
+        93.164,
+        92.607,
+        92.614,
+        92.817,
+        92.623,
+        92.57,
+        93.438,
+        92.805,
+        92.782,
+        93.031,
+        92.731,
+        92.589,
+        93.209,
+        94.738,
+        95.392,
+        104.585,
+        96.875,
+        93.724,
+        92.681,
+        93.106,
+        94.106,
+        95.473,
+        103.26,
+        108.126
+      ]
+    },
+    {
+      "driver": "TSU",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 28,
+      "end_lap": 38,
+      "stint_length": 11,
+      "lap_times_s": [
+        123.448,
+        103.749,
+        102.967,
+        103.355,
+        104.456,
+        104.979,
+        104.923,
+        104.782,
+        102.726,
+        101.098,
+        98.67
+      ]
+    },
+    {
+      "driver": "TSU",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "start_lap": 39,
+      "end_lap": 52,
+      "stint_length": 14,
+      "lap_times_s": [
+        118.637,
+        92.318,
+        90.812,
+        90.319,
+        90.229,
+        90.882,
+        91.438,
+        91.688,
+        90.982,
+        91.367,
+        91.08,
+        91.407,
+        91.529,
+        92.09
+      ]
+    },
+    {
+      "driver": "VER",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "start_lap": 1,
+      "end_lap": 26,
+      "stint_length": 26,
+      "lap_times_s": [
+        96.711,
+        91.773,
+        92.2,
+        91.933,
+        91.778,
+        91.711,
+        91.935,
+        92.038,
+        91.883,
+        91.661,
+        91.81,
+        91.894,
+        91.759,
+        91.7,
+        92.249,
+        92.504,
+        95.359,
+        96.172,
+        102.485,
+        97.108,
+        93.488,
+        91.904,
+        92.143,
+        93.02,
+        96.063,
+        101.491
+      ]
+    },
+    {
+      "driver": "VER",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 38,
+      "stint_length": 12,
+      "lap_times_s": [
+        119.169,
+        101.176,
+        101.533,
+        102.098,
+        102.025,
+        102.538,
+        102.606,
+        102.447,
+        103.029,
+        101.958,
+        98.869,
+        95.963
+      ]
+    },
+    {
+      "driver": "VER",
+      "stint_number": 3,
+      "compound": "HARD",
+      "start_lap": 39,
+      "end_lap": 52,
+      "stint_length": 14,
+      "lap_times_s": [
+        118.311,
+        90.056,
+        89.604,
+        89.472,
+        89.105,
+        89.372,
+        89.137,
+        89.543,
+        89.411,
+        88.952,
+        89.56,
+        89.286,
+        89.443,
+        89.089
+      ]
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 1,
+      "compound": "SOFT",
+      "start_lap": 1,
+      "end_lap": 12,
+      "stint_length": 12,
+      "lap_times_s": [
+        102.231,
+        93.563,
+        93.487,
+        93.221,
+        93.271,
+        93.788,
+        94.51,
+        96.323,
+        95.322,
+        95.828,
+        95.012,
+        94.235
+      ]
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 2,
+      "compound": "MEDIUM",
+      "start_lap": 13,
+      "end_lap": 19,
+      "stint_length": 7,
+      "lap_times_s": [
+        115.049,
+        92.45,
+        92.479,
+        95.202,
+        98.106,
+        99.637,
+        106.313
+      ]
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 3,
+      "compound": "INTERMEDIATE",
+      "start_lap": 20,
+      "end_lap": 26,
+      "stint_length": 7,
+      "lap_times_s": [
+        125.955,
+        104.56,
+        110.248,
+        110.081,
+        108.867,
+        108.245,
+        105.113
+      ]
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 4,
+      "compound": "INTERMEDIATE",
+      "start_lap": 27,
+      "end_lap": 37,
+      "stint_length": 11,
+      "lap_times_s": [
+        124.515,
+        101.866,
+        101.993,
+        103.157,
+        104.316,
+        105.029,
+        105.412,
+        108.01,
+        102.569,
+        102.823,
+        101.608
+      ]
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 5,
+      "compound": "SOFT",
+      "start_lap": 38,
+      "end_lap": 50,
+      "stint_length": 13,
+      "lap_times_s": [
+        126.729,
+        92.696,
+        93.17,
+        91.151,
+        91.121,
+        91.014,
+        91.378,
+        91.36,
+        91.43,
+        91.283,
+        91.556,
+        92.504,
+        91.749
+      ]
+    }
+  ],
+  "tyre_degradation": [
+    {
+      "driver": "ALB",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.20241615384615258,
+      "usable_laps": 25
+    },
+    {
+      "driver": "ALB",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.11184868421052312,
+      "usable_laps": 7
+    },
+    {
+      "driver": "ALB",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": -0.08593956043956101,
+      "usable_laps": 13
+    },
+    {
+      "driver": "ALO",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.2178630769230766,
+      "usable_laps": 25
+    },
+    {
+      "driver": "ALO",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.09828333333333869,
+      "usable_laps": 9
+    },
+    {
+      "driver": "ALO",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.03267582417582411,
+      "usable_laps": 13
+    },
+    {
+      "driver": "BOT",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.17687130434782572,
+      "usable_laps": 24
+    },
+    {
+      "driver": "BOT",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.21069999999999633,
+      "usable_laps": 9
+    },
+    {
+      "driver": "BOT",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": -0.22406593406593814,
+      "usable_laps": 13
+    },
+    {
+      "driver": "HAM",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.16855224856909207,
+      "usable_laps": 24
+    },
+    {
+      "driver": "HAM",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.05471666666666336,
+      "usable_laps": 9
+    },
+    {
+      "driver": "HAM",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": -0.01736813186812759,
+      "usable_laps": 13
+    },
+    {
+      "driver": "HUL",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.14743347826086975,
+      "usable_laps": 24
+    },
+    {
+      "driver": "HUL",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.18897272727272776,
+      "usable_laps": 11
+    },
+    {
+      "driver": "HUL",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.007580419580422286,
+      "usable_laps": 12
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.10300490196078249,
+      "usable_laps": 17
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.8153604651162686,
+      "usable_laps": 5
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 3,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.13824999999999646,
+      "usable_laps": 8
+    },
+    {
+      "driver": "LEC",
+      "stint_number": 4,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.028021978021975775,
+      "usable_laps": 13
+    },
+    {
+      "driver": "MAG",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.1826038461538465,
+      "usable_laps": 25
+    },
+    {
+      "driver": "MAG",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.34416666666667395,
+      "usable_laps": 8
+    },
+    {
+      "driver": "MAG",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": -0.02606373626373595,
+      "usable_laps": 14
+    },
+    {
+      "driver": "NOR",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.14670178217821697,
+      "usable_laps": 24
+    },
+    {
+      "driver": "NOR",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.11610303030302356,
+      "usable_laps": 10
+    },
+    {
+      "driver": "NOR",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.12334615384615376,
+      "usable_laps": 12
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 1,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.2616372549019611,
+      "usable_laps": 17
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": null,
+      "usable_laps": 0
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 5.9720000000000155,
+      "usable_laps": 3
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 4,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.00018181818182291153,
+      "usable_laps": 10
+    },
+    {
+      "driver": "OCO",
+      "stint_number": 5,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.11675454545454796,
+      "usable_laps": 11
+    },
+    {
+      "driver": "PER",
+      "stint_number": 1,
+      "compound": "HARD",
+      "slope_s_per_lap": 0.11545098039215594,
+      "usable_laps": 17
+    },
+    {
+      "driver": "PER",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 1.2262857142857166,
+      "usable_laps": 7
+    },
+    {
+      "driver": "PER",
+      "stint_number": 3,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.2927857142857146,
+      "usable_laps": 7
+    },
+    {
+      "driver": "PER",
+      "stint_number": 4,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": -0.3833095238095204,
+      "usable_laps": 8
+    },
+    {
+      "driver": "PER",
+      "stint_number": 5,
+      "compound": "SOFT",
+      "slope_s_per_lap": null,
+      "usable_laps": 2
+    },
+    {
+      "driver": "PIA",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.2774964102564108,
+      "usable_laps": 26
+    },
+    {
+      "driver": "PIA",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.03641666666666372,
+      "usable_laps": 8
+    },
+    {
+      "driver": "PIA",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": -0.015978021978020344,
+      "usable_laps": 13
+    },
+    {
+      "driver": "RIC",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.20202565217391177,
+      "usable_laps": 24
+    },
+    {
+      "driver": "RIC",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.20305520169852118,
+      "usable_laps": 8
+    },
+    {
+      "driver": "RIC",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.13785164835164587,
+      "usable_laps": 13
+    },
+    {
+      "driver": "RUS",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.18077112019623895,
+      "usable_laps": 24
+    },
+    {
+      "driver": "RUS",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.8705000000000057,
+      "usable_laps": 4
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.12129304347825973,
+      "usable_laps": 24
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.3251757575757576,
+      "usable_laps": 10
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 3,
+      "compound": "HARD",
+      "slope_s_per_lap": -0.10506666666666856,
+      "usable_laps": 9
+    },
+    {
+      "driver": "SAI",
+      "stint_number": 4,
+      "compound": "SOFT",
+      "slope_s_per_lap": null,
+      "usable_laps": 1
+    },
+    {
+      "driver": "SAR",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.2192464308681664,
+      "usable_laps": 24
+    },
+    {
+      "driver": "SAR",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.11426666666666101,
+      "usable_laps": 9
+    },
+    {
+      "driver": "SAR",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.10728021978022106,
+      "usable_laps": 13
+    },
+    {
+      "driver": "STR",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.17338304347826058,
+      "usable_laps": 24
+    },
+    {
+      "driver": "STR",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.1990363636363641,
+      "usable_laps": 11
+    },
+    {
+      "driver": "STR",
+      "stint_number": 3,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": -0.008786713286713778,
+      "usable_laps": 12
+    },
+    {
+      "driver": "TSU",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.20575615384615414,
+      "usable_laps": 25
+    },
+    {
+      "driver": "TSU",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.1334333333333352,
+      "usable_laps": 9
+    },
+    {
+      "driver": "TSU",
+      "stint_number": 3,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.05294505494505699,
+      "usable_laps": 13
+    },
+    {
+      "driver": "VER",
+      "stint_number": 1,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 0.1738286956521738,
+      "usable_laps": 24
+    },
+    {
+      "driver": "VER",
+      "stint_number": 2,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": -0.07150909090908858,
+      "usable_laps": 10
+    },
+    {
+      "driver": "VER",
+      "stint_number": 3,
+      "compound": "HARD",
+      "slope_s_per_lap": -0.03599999999999758,
+      "usable_laps": 13
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 1,
+      "compound": "SOFT",
+      "slope_s_per_lap": 0.30188484848485164,
+      "usable_laps": 10
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 2,
+      "compound": "MEDIUM",
+      "slope_s_per_lap": 2.0001000000000055,
+      "usable_laps": 5
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 3,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.5989000000000082,
+      "usable_laps": 5
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 4,
+      "compound": "INTERMEDIATE",
+      "slope_s_per_lap": 0.2726333333333295,
+      "usable_laps": 9
+    },
+    {
+      "driver": "ZHO",
+      "stint_number": 5,
+      "compound": "SOFT",
+      "slope_s_per_lap": -0.04033566433566297,
+      "usable_laps": 12
+    }
+  ],
+  "compound_performance": [
+    {
+      "compound": "HARD",
+      "median_lap_time_s": 89.872,
+      "usable_laps": 39
+    },
+    {
+      "compound": "SOFT",
+      "median_lap_time_s": 91.163,
+      "usable_laps": 158
+    },
+    {
+      "compound": "MEDIUM",
+      "median_lap_time_s": 92.681,
+      "usable_laps": 461
+    },
+    {
+      "compound": "INTERMEDIATE",
+      "median_lap_time_s": 103.137,
+      "usable_laps": 183
+    }
+  ],
+  "pit_stops": [
+    {
+      "driver": "ALB",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 34.753
+    },
+    {
+      "driver": "ALB",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 29.515
+    },
+    {
+      "driver": "ALO",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.378
+    },
+    {
+      "driver": "ALO",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 29.719
+    },
+    {
+      "driver": "BOT",
+      "in_lap": 26,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 30.597
+    },
+    {
+      "driver": "BOT",
+      "in_lap": 37,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 31.512
+    },
+    {
+      "driver": "HAM",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 28.989
+    },
+    {
+      "driver": "HAM",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 30.037
+    },
+    {
+      "driver": "HUL",
+      "in_lap": 26,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.459
+    },
+    {
+      "driver": "HUL",
+      "in_lap": 39,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 30.464
+    },
+    {
+      "driver": "LEC",
+      "in_lap": 19,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 28.545
+    },
+    {
+      "driver": "LEC",
+      "in_lap": 27,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.206
+    },
+    {
+      "driver": "LEC",
+      "in_lap": 37,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 29.079
+    },
+    {
+      "driver": "MAG",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 30.165
+    },
+    {
+      "driver": "MAG",
+      "in_lap": 37,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 29.884
+    },
+    {
+      "driver": "NOR",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 28.743
+    },
+    {
+      "driver": "NOR",
+      "in_lap": 39,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 30.361
+    },
+    {
+      "driver": "OCO",
+      "in_lap": 19,
+      "compound_before": "SOFT",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 28.539
+    },
+    {
+      "driver": "OCO",
+      "in_lap": 21,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 28.399
+    },
+    {
+      "driver": "OCO",
+      "in_lap": 26,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.182
+    },
+    {
+      "driver": "OCO",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 29.054
+    },
+    {
+      "driver": "PER",
+      "in_lap": 19,
+      "compound_before": "HARD",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 28.303
+    },
+    {
+      "driver": "PER",
+      "in_lap": 28,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 32.366
+    },
+    {
+      "driver": "PER",
+      "in_lap": 37,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 29.196
+    },
+    {
+      "driver": "PER",
+      "in_lap": 47,
+      "compound_before": "MEDIUM",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 28.895
+    },
+    {
+      "driver": "PIA",
+      "in_lap": 28,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.595
+    },
+    {
+      "driver": "PIA",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 29.341
+    },
+    {
+      "driver": "RIC",
+      "in_lap": 26,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 28.811
+    },
+    {
+      "driver": "RIC",
+      "in_lap": 37,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 29.966
+    },
+    {
+      "driver": "RUS",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 32.139
+    },
+    {
+      "driver": "RUS",
+      "in_lap": 33,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": null,
+      "pit_lane_time_s": null
+    },
+    {
+      "driver": "SAI",
+      "in_lap": 26,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.266
+    },
+    {
+      "driver": "SAI",
+      "in_lap": 39,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "HARD",
+      "pit_lane_time_s": 28.927
+    },
+    {
+      "driver": "SAI",
+      "in_lap": 50,
+      "compound_before": "HARD",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 28.671
+    },
+    {
+      "driver": "SAR",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 32.857
+    },
+    {
+      "driver": "SAR",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 29.435
+    },
+    {
+      "driver": "STR",
+      "in_lap": 26,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.055
+    },
+    {
+      "driver": "STR",
+      "in_lap": 39,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 29.434
+    },
+    {
+      "driver": "TSU",
+      "in_lap": 27,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.94
+    },
+    {
+      "driver": "TSU",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 29.681
+    },
+    {
+      "driver": "VER",
+      "in_lap": 26,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 28.466
+    },
+    {
+      "driver": "VER",
+      "in_lap": 38,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "HARD",
+      "pit_lane_time_s": 29.156
+    },
+    {
+      "driver": "ZHO",
+      "in_lap": 12,
+      "compound_before": "SOFT",
+      "compound_after": "MEDIUM",
+      "pit_lane_time_s": 29.143
+    },
+    {
+      "driver": "ZHO",
+      "in_lap": 19,
+      "compound_before": "MEDIUM",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.896
+    },
+    {
+      "driver": "ZHO",
+      "in_lap": 26,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "INTERMEDIATE",
+      "pit_lane_time_s": 29.073
+    },
+    {
+      "driver": "ZHO",
+      "in_lap": 37,
+      "compound_before": "INTERMEDIATE",
+      "compound_after": "SOFT",
+      "pit_lane_time_s": 32.983
+    }
+  ],
+  "position_changes": [
+    {
+      "driver": "MAG",
+      "start_position": 17,
+      "finish_position": 12,
+      "positions_gained": 5,
+      "status": "Finished"
+    },
+    {
+      "driver": "TSU",
+      "start_position": 13,
+      "finish_position": 10,
+      "positions_gained": 3,
+      "status": "Finished"
+    },
+    {
+      "driver": "PER",
+      "start_position": 20,
+      "finish_position": 17,
+      "positions_gained": 3,
+      "status": "Lapped"
+    },
+    {
+      "driver": "VER",
+      "start_position": 4,
+      "finish_position": 2,
+      "positions_gained": 2,
+      "status": "Finished"
+    },
+    {
+      "driver": "SAI",
+      "start_position": 7,
+      "finish_position": 5,
+      "positions_gained": 2,
+      "status": "Finished"
+    },
+    {
+      "driver": "ALO",
+      "start_position": 10,
+      "finish_position": 8,
+      "positions_gained": 2,
+      "status": "Finished"
+    },
+    {
+      "driver": "RIC",
+      "start_position": 15,
+      "finish_position": 13,
+      "positions_gained": 2,
+      "status": "Lapped"
+    },
+    {
+      "driver": "OCO",
+      "start_position": 18,
+      "finish_position": 16,
+      "positions_gained": 2,
+      "status": "Lapped"
+    },
+    {
+      "driver": "HAM",
+      "start_position": 2,
+      "finish_position": 1,
+      "positions_gained": 1,
+      "status": "Finished"
+    },
+    {
+      "driver": "PIA",
+      "start_position": 5,
+      "finish_position": 4,
+      "positions_gained": 1,
+      "status": "Finished"
+    },
+    {
+      "driver": "STR",
+      "start_position": 8,
+      "finish_position": 7,
+      "positions_gained": 1,
+      "status": "Finished"
+    },
+    {
+      "driver": "SAR",
+      "start_position": 12,
+      "finish_position": 11,
+      "positions_gained": 1,
+      "status": "Finished"
+    },
+    {
+      "driver": "BOT",
+      "start_position": 16,
+      "finish_position": 15,
+      "positions_gained": 1,
+      "status": "Lapped"
+    },
+    {
+      "driver": "NOR",
+      "start_position": 3,
+      "finish_position": 3,
+      "positions_gained": 0,
+      "status": "Finished"
+    },
+    {
+      "driver": "HUL",
+      "start_position": 6,
+      "finish_position": 6,
+      "positions_gained": 0,
+      "status": "Finished"
+    },
+    {
+      "driver": "ALB",
+      "start_position": 9,
+      "finish_position": 9,
+      "positions_gained": 0,
+      "status": "Finished"
+    },
+    {
+      "driver": "GAS",
+      "start_position": 19,
+      "finish_position": 20,
+      "positions_gained": -1,
+      "status": "Did not start"
+    },
+    {
+      "driver": "LEC",
+      "start_position": 11,
+      "finish_position": 14,
+      "positions_gained": -3,
+      "status": "Lapped"
+    },
+    {
+      "driver": "ZHO",
+      "start_position": 14,
+      "finish_position": 18,
+      "positions_gained": -4,
+      "status": "Lapped"
+    },
+    {
+      "driver": "RUS",
+      "start_position": 1,
+      "finish_position": 19,
+      "positions_gained": -18,
+      "status": "Retired"
+    }
+  ],
+  "lap_exclusions": [
+    {
+      "driver": "HAM",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 19,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                19
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                19
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                19
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "VER",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "NOR",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 20,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 40,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                20
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                20
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                20
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "PIA",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 29,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                29,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                28,
+                29,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                29,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                28,
+                29,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                29,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                28,
+                29,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "SAI",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 40,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 50,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 51,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 44,
+          "excluded_laps": 8,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                28
+              ]
+            },
+            "pit_in": {
+              "count": 3,
+              "lap_numbers": [
+                26,
+                39,
+                50
+              ]
+            },
+            "pit_out": {
+              "count": 3,
+              "lap_numbers": [
+                27,
+                40,
+                51
+              ]
+            },
+            "inaccurate": {
+              "count": 7,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40,
+                50,
+                51
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 44,
+          "excluded_laps": 8,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                28
+              ]
+            },
+            "pit_in": {
+              "count": 3,
+              "lap_numbers": [
+                26,
+                39,
+                50
+              ]
+            },
+            "pit_out": {
+              "count": 3,
+              "lap_numbers": [
+                27,
+                40,
+                51
+              ]
+            },
+            "inaccurate": {
+              "count": 7,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40,
+                50,
+                51
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 44,
+          "excluded_laps": 8,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                28
+              ]
+            },
+            "pit_in": {
+              "count": 3,
+              "lap_numbers": [
+                26,
+                39,
+                50
+              ]
+            },
+            "pit_out": {
+              "count": 3,
+              "lap_numbers": [
+                27,
+                40,
+                51
+              ]
+            },
+            "inaccurate": {
+              "count": 7,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40,
+                50,
+                51
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "HUL",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 40,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "STR",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 40,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                39
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                40
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                39,
+                40
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "ALO",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "ALB",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 35,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 36,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 45,
+          "excluded_laps": 7,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 2,
+              "lap_numbers": [
+                35,
+                36
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 45,
+          "excluded_laps": 7,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 2,
+              "lap_numbers": [
+                35,
+                36
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 45,
+          "excluded_laps": 7,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 2,
+              "lap_numbers": [
+                35,
+                36
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "TSU",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "SAR",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 16,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                16
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                16
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                16
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "MAG",
+      "laps_recorded": 52,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 47,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                28,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "RIC",
+      "laps_recorded": 51,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 31,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 45,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                31
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 45,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                31
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 45,
+          "excluded_laps": 6,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                31
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "LEC",
+      "laps_recorded": 51,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 19,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 20,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 24,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 43,
+          "excluded_laps": 8,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                24
+              ]
+            },
+            "pit_in": {
+              "count": 3,
+              "lap_numbers": [
+                19,
+                27,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 3,
+              "lap_numbers": [
+                20,
+                28,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 7,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                27,
+                28,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 43,
+          "excluded_laps": 8,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                24
+              ]
+            },
+            "pit_in": {
+              "count": 3,
+              "lap_numbers": [
+                19,
+                27,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 3,
+              "lap_numbers": [
+                20,
+                28,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 7,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                27,
+                28,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 43,
+          "excluded_laps": 8,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                24
+              ]
+            },
+            "pit_in": {
+              "count": 3,
+              "lap_numbers": [
+                19,
+                27,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 3,
+              "lap_numbers": [
+                20,
+                28,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 7,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                27,
+                28,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "BOT",
+      "laps_recorded": 51,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 46,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 46,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "OCO",
+      "laps_recorded": 50,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 19,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 20,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 21,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 22,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 39,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                19,
+                21,
+                26,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 4,
+              "lap_numbers": [
+                20,
+                22,
+                27,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                21,
+                22,
+                26,
+                27,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                19,
+                21,
+                26,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 4,
+              "lap_numbers": [
+                20,
+                22,
+                27,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                21,
+                22,
+                26,
+                27,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                19,
+                21,
+                26,
+                38
+              ]
+            },
+            "pit_out": {
+              "count": 4,
+              "lap_numbers": [
+                20,
+                22,
+                27,
+                39
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                21,
+                22,
+                26,
+                27,
+                38,
+                39
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "PER",
+      "laps_recorded": 50,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 19,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 20,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 29,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 47,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 48,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                19,
+                28,
+                37,
+                47
+              ]
+            },
+            "pit_out": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                20,
+                29,
+                38,
+                48
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                28,
+                29,
+                37,
+                38,
+                47,
+                48
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                19,
+                28,
+                37,
+                47
+              ]
+            },
+            "pit_out": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                20,
+                29,
+                38,
+                48
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                28,
+                29,
+                37,
+                38,
+                47,
+                48
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                19,
+                28,
+                37,
+                47
+              ]
+            },
+            "pit_out": {
+              "count": 5,
+              "lap_numbers": [
+                1,
+                20,
+                29,
+                38,
+                48
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                19,
+                20,
+                28,
+                29,
+                37,
+                38,
+                47,
+                48
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "ZHO",
+      "laps_recorded": 50,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 12,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 13,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 19,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 20,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 26,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 37,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 38,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                12,
+                19,
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 4,
+              "lap_numbers": [
+                13,
+                20,
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                12,
+                13,
+                19,
+                20,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                12,
+                19,
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 4,
+              "lap_numbers": [
+                13,
+                20,
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                12,
+                13,
+                19,
+                20,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 41,
+          "excluded_laps": 9,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 4,
+              "lap_numbers": [
+                12,
+                19,
+                26,
+                37
+              ]
+            },
+            "pit_out": {
+              "count": 4,
+              "lap_numbers": [
+                13,
+                20,
+                27,
+                38
+              ]
+            },
+            "inaccurate": {
+              "count": 9,
+              "lap_numbers": [
+                1,
+                12,
+                13,
+                19,
+                20,
+                26,
+                27,
+                37,
+                38
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "RUS",
+      "laps_recorded": 33,
+      "excluded_laps_detail": [
+        {
+          "lap_number": 1,
+          "reasons": [
+            "inaccurate"
+          ],
+          "primary_reason": "inaccurate"
+        },
+        {
+          "lap_number": 19,
+          "reasons": [
+            "deleted"
+          ],
+          "primary_reason": "deleted"
+        },
+        {
+          "lap_number": 27,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        },
+        {
+          "lap_number": 28,
+          "reasons": [
+            "pit_out",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_out"
+        },
+        {
+          "lap_number": 33,
+          "reasons": [
+            "pit_in",
+            "inaccurate"
+          ],
+          "primary_reason": "pit_in"
+        }
+      ],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 28,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                19
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                33
+              ]
+            },
+            "pit_out": {
+              "count": 1,
+              "lap_numbers": [
+                28
+              ]
+            },
+            "inaccurate": {
+              "count": 4,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                33
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 28,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                19
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                33
+              ]
+            },
+            "pit_out": {
+              "count": 1,
+              "lap_numbers": [
+                28
+              ]
+            },
+            "inaccurate": {
+              "count": 4,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                33
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 28,
+          "excluded_laps": 5,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 1,
+              "lap_numbers": [
+                19
+              ]
+            },
+            "pit_in": {
+              "count": 2,
+              "lap_numbers": [
+                27,
+                33
+              ]
+            },
+            "pit_out": {
+              "count": 1,
+              "lap_numbers": [
+                28
+              ]
+            },
+            "inaccurate": {
+              "count": 4,
+              "lap_numbers": [
+                1,
+                27,
+                28,
+                33
+              ]
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "driver": "GAS",
+      "laps_recorded": 0,
+      "excluded_laps_detail": [],
+      "policies": {
+        "all_usable_laps": {
+          "retained_laps": 0,
+          "excluded_laps": 0,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_out": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "inaccurate": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "representative_race_pace": {
+          "retained_laps": 0,
+          "excluded_laps": 0,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_out": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "inaccurate": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        },
+        "green_flag_pace": {
+          "retained_laps": 0,
+          "excluded_laps": 0,
+          "excluded_by_reason": {
+            "deleted": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_in": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "pit_out": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "inaccurate": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "red_flag": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "virtual_safety_car": {
+              "count": 0,
+              "lap_numbers": []
+            },
+            "yellow_flag": {
+              "count": 0,
+              "lap_numbers": []
+            }
+          }
+        }
+      }
+    }
+  ],
+  "track_conditions": [],
+  "unrecognized_compound_laps": {
+    "count": 0,
+    "by_driver": {}
+  },
+  "quality_policy_definitions": {
+    "all_usable_laps": "Excludes deleted, inaccurate, and pit in/out laps only. Includes laps affected by yellow flags, Safety Car, and VSC.",
+    "representative_race_pace": "As all_usable_laps, additionally excludes laps run under Safety Car, VSC, or a red flag. Yellow-flagged laps are kept.",
+    "green_flag_pace": "As all_usable_laps, additionally excludes any lap affected by a yellow flag, Safety Car, VSC, or red flag - only laps run entirely under green-flag conditions remain. A deliberately strict policy, not a claim that every yellow-affected lap is inherently invalid."
+  }
+}
