@@ -174,6 +174,43 @@ def test_teammate_pace_head_to_head_midseason_driver_change_is_separate_pairing(
         assert r["races_compared"] == 1
 
 
+def test_teammate_pace_head_to_head_gap_statistics(tmp_path):
+    # driver_b (BBB) - driver_a (AAA) gaps across 3 races: +1.0, +2.0, -0.5
+    r1 = _result(2024, 1, "R", "1.5.1", {"AAA": "Team A", "BBB": "Team A"}, {"AAA": 90.0, "BBB": 91.0})
+    r2 = _result(2024, 2, "R", "1.5.1", {"AAA": "Team A", "BBB": "Team A"}, {"AAA": 90.0, "BBB": 92.0})
+    r3 = _result(2024, 3, "R", "1.5.1", {"AAA": "Team A", "BBB": "Team A"}, {"AAA": 90.5, "BBB": 90.0})
+    for r in (r1, r2, r3):
+        _write(tmp_path, r)
+
+    index = load_season_index(2024, "R", results_dir=tmp_path)
+    pairing = teammate_pace_head_to_head(index)[0]
+
+    assert pairing["median_gap_s"] == pytest.approx(1.0)
+    assert pairing["min_gap_s"] == pytest.approx(-0.5)
+    assert pairing["max_gap_s"] == pytest.approx(2.0)
+    assert pairing["races_decided_by_under_0.05s"] == 0
+
+
+def test_teammate_pace_head_to_head_close_race_counted():
+    from saif1.aggregation import SeasonIndex
+
+    r1 = _result(2024, 1, "R", "1.5.1", {"AAA": "Team A", "BBB": "Team A"}, {"AAA": 90.0, "BBB": 90.03})
+    index = SeasonIndex(year=2024, session_type="R", methodology_version="1.5.1", results=[r1])
+    pairing = teammate_pace_head_to_head(index)[0]
+    assert pairing["races_decided_by_under_0.05s"] == 1
+
+
+def test_teammate_pace_head_to_head_gap_none_when_no_races_compared():
+    from saif1.aggregation import SeasonIndex
+
+    r1 = _result(2024, 1, "R", "1.5.1", {"AAA": "Team A", "BBB": "Team A"}, {"AAA": 90.0, "BBB": None})
+    index = SeasonIndex(year=2024, session_type="R", methodology_version="1.5.1", results=[r1])
+    pairing = teammate_pace_head_to_head(index)[0]
+    assert pairing["median_gap_s"] is None
+    assert pairing["min_gap_s"] is None
+    assert pairing["max_gap_s"] is None
+
+
 def test_teammate_pace_head_to_head_empty_index():
     from saif1.aggregation import SeasonIndex
 

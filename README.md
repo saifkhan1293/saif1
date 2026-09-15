@@ -544,29 +544,57 @@ nothing else changed.
 - No API or user-facing querying yet - `aggregation.py` (see Roadmap)
   provides deterministic cross-session aggregation as a Python module,
   consumed programmatically; an API/frontend is still future work.
+- `teammate_pace_head_to_head` does not control for track position or
+  strategy divergence (see Roadmap Phase 1.6) - a confound-controlled
+  comparison (matched compound, similar tyre age, similar stint phase)
+  is the obvious next refinement and everything needed to build it is
+  already persisted. Deliberately not built yet: it's real work, and
+  better informed by seeing what the agent phase actually needs from it
+  than by guessing at the requirements now.
 - No agent, critic/validation layer, ML, or automated publishing exists
   yet - see Roadmap.
 
 ## Roadmap
 
 - **Phase 1.6** *(in progress)*: `aggregation.py` - deterministic
-  cross-session aggregation over a season's persisted results (e.g.
-  season-long teammate pace head-to-head). Built only after a full 2024
-  season was persisted and its data quality checked at scale (see
-  **Data quality & assumptions**) - an aggregation layer built against
-  untested data would risk compounding whatever that testing would have
-  caught.
+  cross-session aggregation over a season's persisted results. Built only
+  after a full 2024 season was persisted and its data quality checked at
+  scale (see **Data quality & assumptions**) - an aggregation layer built
+  against untested data would risk compounding whatever that testing
+  would have caught. First deliverable: season-long teammate
+  `representative_race_pace` head-to-head
+  (`scripts/teammate_pace_summary.py`). Real result from the complete
+  2024 season: **Verstappen beat Perez in 18 of 22 comparable races, by a
+  median gap of 0.605s (range -1.76s to +2.36s; only 1 of 22 races decided
+  by under 0.05s).** Same car, different circumstances: this controls for
+  the car but not for the race - track position (the faster driver often
+  runs in cleaner air) and strategy divergence (different pit timing means
+  different fuel loads/tyre ages at a given lap) both still contribute to
+  that gap. The count and the magnitude describe what happened; neither
+  isolates driver capability from circumstance on its own - see the same
+  caveat printed directly in the script's output, not just here.
+  Emergent, undesigned property worth noting: because comparing two
+  drivers requires knowing exactly which two shared a team in a given
+  session, pairings are keyed by exact driver set - which, with no F1
+  driver lineups hardcoded anywhere, automatically detected every real
+  2024 mid-season substitution (Ricciardo/Lawson at RB, Sargeant/Colapinto
+  at Williams, and others) as its own separate comparison.
 - **Phase 2**: SAIF1 Analyst Agent - tool-calling agent that uses the
   Phase 1/1.5/1.6 analysis functions and persisted/aggregated results to
   investigate a race and produce findings.
 - **Phase 3**: Critic/validation layer that challenges unsupported claims,
   bad assumptions, and small sample sizes before a finding is finalized.
-  Must include, by design rather than bolted on later: automatically
-  re-checking any `representative_race_pace`-based claim against
-  `green_flag_pace` (see **Data quality & assumptions**) - a pace gap
-  that survives the stricter policy is more defensible than one that
-  only appears under the looser one, and the critic should say so
-  explicitly rather than leave it implicit.
+  Must include, by design rather than bolted on later:
+  - Automatically re-checking any `representative_race_pace`-based claim
+    against `green_flag_pace` (see **Data quality & assumptions**) - a
+    pace gap that survives the stricter policy is more defensible than
+    one that only appears under the looser one.
+  - Automatically attaching the track-position/strategy confound caveat
+    (above) to any teammate-comparison-derived claim before it's
+    presented standalone. This is exactly the class of claim a fluent
+    agent will state confidently and without qualification unless the
+    deterministic layer hands it the caveat - the critic must not depend
+    on the agent remembering to ask for it.
 - **Phase 4**: Visualization polish, structured reports, and automated
   publishing.
 - SQLite (or similar) becomes worth adopting once there's a real

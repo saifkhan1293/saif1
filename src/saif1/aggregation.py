@@ -36,12 +36,23 @@ not precautions taken in the abstract:
   aggregating across differing methodology versions would combine numbers
   computed under different rules into one meaningless average, so
   load_season_index refuses instead.
+
+Emergent property, not a designed one: teammate_pace_head_to_head() keys
+each comparison by the exact pair of drivers who shared a team in a given
+session (required for the zero-usable-laps handling above - you need to
+know precisely which two drivers to compare before you can compare them).
+Nobody set out to detect driver changes; keying by exact driver set did
+it anyway. Run against the real 2024 season, it surfaced every real
+mid-season substitution (Ricciardo/Lawson at RB, Sargeant/Colapinto at
+Williams, and others) as separate pairings, with nothing about F1 driver
+lineups hardcoded anywhere in this module.
 """
 
 from __future__ import annotations
 
 import json
 import logging
+import statistics
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -169,7 +180,26 @@ def teammate_pace_head_to_head(index: SeasonIndex) -> list[dict]:
     mid-season teammate change (e.g. a reserve driver taking over a seat)
     produces a separate pairing entry rather than being merged into one,
     since "driver A vs driver B" and "driver A vs driver C" are different
-    comparisons.
+    comparisons. This is also how the function ended up detecting every
+    real mid-season 2024 driver change (Ricciardo/Lawson, Sargeant/
+    Colapinto, and others) with nothing hardcoded about driver lineups -
+    an emergent consequence of exact-driver-set keying, not a feature
+    that was designed in. It exists because the zero-usable-laps handling
+    above requires knowing precisely which two drivers to compare for a
+    given session in the first place; keying pairings by the literal
+    driver set was the direct way to do that, and mid-season-change
+    detection fell out of it for free.
+
+    IMPORTANT - what the win count and gap DO NOT establish: this
+    compares race pace between teammates in the same car, which controls
+    for the car but not for the race. Track position (the faster driver
+    often runs in cleaner air) and strategy divergence (different pit
+    timing means different fuel loads/tyre ages at a given lap) both
+    still contribute to the gap. A count and a magnitude here describe
+    what happened; they are not a claim about driver capability isolated
+    from circumstance. This is exactly the kind of claim the planned
+    Phase 3 critic must attach a caveat to automatically before ever
+    presenting it standalone - see the README and the roadmap.
 
     Args:
         index: A SeasonIndex, typically for session_type="R" - see the
@@ -187,9 +217,21 @@ def teammate_pace_head_to_head(index: SeasonIndex) -> list[dict]:
             "driver_a_faster": int,  # lower median_lap_time_s
             "driver_b_faster": int,
             "races_no_data": int,    # one or both had 0 usable laps
+            "median_gap_s": float | None,  # median(driver_b - driver_a)
+                                            # median_lap_time_s across
+                                            # compared races; positive
+                                            # means driver_b was slower
+                                            # on average. None if
+                                            # races_compared == 0.
+            "min_gap_s": float | None,     # most negative (driver_b's
+                                            # best relative race)
+            "max_gap_s": float | None,     # most positive (driver_a's
+                                            # best relative race)
+            "races_decided_by_under_0.05s": int,  # closest-margin count
         }
     """
     pairings: dict[tuple[str, str, str], dict] = {}
+    gaps_by_pairing: dict[tuple[str, str, str], list[float]] = {}
     skipped_non_two_driver_team_sessions = 0
 
     for result in index.results:
@@ -223,11 +265,26 @@ def teammate_pace_head_to_head(index: SeasonIndex) -> list[dict]:
                 continue
 
             pairing["races_compared"] += 1
+            gap = pace_b["median_lap_time_s"] - pace_a["median_lap_time_s"]
+            gaps_by_pairing.setdefault(key, []).append(gap)
             if pace_a["median_lap_time_s"] < pace_b["median_lap_time_s"]:
                 pairing["driver_a_faster"] += 1
             elif pace_b["median_lap_time_s"] < pace_a["median_lap_time_s"]:
                 pairing["driver_b_faster"] += 1
             # Exactly equal medians: neither incremented (rare, deterministic tie).
+
+    for key, pairing in pairings.items():
+        gaps = gaps_by_pairing.get(key, [])
+        if gaps:
+            pairing["median_gap_s"] = statistics.median(gaps)
+            pairing["min_gap_s"] = min(gaps)
+            pairing["max_gap_s"] = max(gaps)
+            pairing["races_decided_by_under_0.05s"] = sum(1 for g in gaps if abs(g) < 0.05)
+        else:
+            pairing["median_gap_s"] = None
+            pairing["min_gap_s"] = None
+            pairing["max_gap_s"] = None
+            pairing["races_decided_by_under_0.05s"] = 0
 
     if skipped_non_two_driver_team_sessions:
         logger.info(

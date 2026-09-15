@@ -42,10 +42,25 @@ def main(argv: list[str] | None = None) -> int:
         print("No teammate pairings found.")
         return 0
 
-    print(f"{'Team':<25} {'Head-to-head (representative_race_pace)':<45} {'Compared':>8} {'No data':>8}")
+    print(
+        f"{'Team':<25} {'Head-to-head (representative_race_pace)':<45} "
+        f"{'Median gap':>11} {'Compared':>8} {'No data':>8}"
+    )
     for r in results:
         matchup = f"{r['driver_a']} {r['driver_a_faster']}-{r['driver_b_faster']} {r['driver_b']}"
-        print(f"{r['team']:<25} {matchup:<45} {r['races_compared']:>8} {r['races_no_data']:>8}")
+        gap = f"{r['median_gap_s']:+.3f}s" if r["median_gap_s"] is not None else "n/a"
+        print(f"{r['team']:<25} {matchup:<45} {gap:>11} {r['races_compared']:>8} {r['races_no_data']:>8}")
+
+    print(
+        "\nMedian gap: median per-race (driver_b - driver_a) representative_race_pace "
+        "median_lap_time_s; positive means driver_b was slower on average.\n"
+        "\nSame car, different circumstances. This compares teammates in identical\n"
+        "machinery, which controls for the car - but not for the race. Track position\n"
+        "(the faster driver often runs in cleaner air) and strategy divergence\n"
+        "(different pit timing means different fuel loads/tyre ages at a given lap)\n"
+        "both still contribute to every gap above. A count and a magnitude describe\n"
+        "what happened; neither isolates driver capability from circumstance."
+    )
 
     return 0
 
