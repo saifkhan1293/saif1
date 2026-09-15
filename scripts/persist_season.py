@@ -92,6 +92,15 @@ def main(argv: list[str] | None = None) -> int:
 
         print(f"[{round_number:02d}] {event_name} ({args.session}, {total} in this batch) ...", flush=True)
 
+        if args.skip_existing:
+            already_persisted = list(
+                results_dir.glob(f"{args.year}_{round_number:02d}_*_{args.session}.json")
+            )
+            if already_persisted:
+                print(f"    SKIPPED (already exists: {already_persisted[0].name})", flush=True)
+                skipped.append((round_number, event_name))
+                continue
+
         request = SessionRequest(year=args.year, event=event_name, session_type=args.session)
 
         start = time.monotonic()
