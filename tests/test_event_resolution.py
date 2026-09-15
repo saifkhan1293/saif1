@@ -125,3 +125,94 @@ def test_resolve_event_distinct_similar_names_not_ambiguous(sample_schedule):
     # fuzzy ratios to other unrelated events happen to be nontrivial.
     resolved = resolve_event(sample_schedule, "Australian Grand Prix", 2024)
     assert resolved.event_name == "Australian Grand Prix"
+
+
+def test_resolve_event_same_country_multiple_races_resolved_by_exact_eventname():
+    # Real 2024 failure: "United States Grand Prix" substring-matched
+    # Miami, United States, and Las Vegas GPs (all Country="United States"
+    # or "USA") before EventName got exact-match precedence. All three
+    # share a country here too, reproducing the actual condition.
+    schedule = _schedule(
+        [
+            {
+                "RoundNumber": 6, "EventName": "Miami Grand Prix",
+                "OfficialEventName": "FORMULA 1 MIAMI GRAND PRIX 2024",
+                "Location": "Miami", "Country": "United States",
+                "EventDate": pd.Timestamp("2024-05-05"),
+            },
+            {
+                "RoundNumber": 19, "EventName": "United States Grand Prix",
+                "OfficialEventName": "FORMULA 1 UNITED STATES GRAND PRIX 2024",
+                "Location": "Austin", "Country": "United States",
+                "EventDate": pd.Timestamp("2024-10-20"),
+            },
+            {
+                "RoundNumber": 22, "EventName": "Las Vegas Grand Prix",
+                "OfficialEventName": "FORMULA 1 LAS VEGAS GRAND PRIX 2024",
+                "Location": "Las Vegas", "Country": "United States",
+                "EventDate": pd.Timestamp("2024-11-23"),
+            },
+        ]
+    )
+    resolved = resolve_event(schedule, "United States Grand Prix", 2024)
+    assert resolved.round_number == 19
+    assert resolved.event_name == "United States Grand Prix"
+
+
+def test_resolve_event_sponsor_polluted_official_name_resolved_by_exact_eventname():
+    # Real 2024 failure: "Qatar Grand Prix" substring-matched four events
+    # because their OfficialEventName carries "Qatar Airways" sponsor
+    # branding. Reproduced here with two sponsor-polluted decoys plus the
+    # real Qatar GP.
+    schedule = _schedule(
+        [
+            {
+                "RoundNumber": 11, "EventName": "Austrian Grand Prix",
+                "OfficialEventName": "FORMULA 1 QATAR AIRWAYS AUSTRIAN GRAND PRIX 2024",
+                "Location": "Spielberg", "Country": "Austria",
+                "EventDate": pd.Timestamp("2024-06-30"),
+            },
+            {
+                "RoundNumber": 12, "EventName": "British Grand Prix",
+                "OfficialEventName": "FORMULA 1 QATAR AIRWAYS BRITISH GRAND PRIX 2024",
+                "Location": "Silverstone", "Country": "United Kingdom",
+                "EventDate": pd.Timestamp("2024-07-07"),
+            },
+            {
+                "RoundNumber": 23, "EventName": "Qatar Grand Prix",
+                "OfficialEventName": "FORMULA 1 QATAR AIRWAYS QATAR GRAND PRIX 2024",
+                "Location": "Lusail", "Country": "Qatar",
+                "EventDate": pd.Timestamp("2024-12-01"),
+            },
+        ]
+    )
+    resolved = resolve_event(schedule, "Qatar Grand Prix", 2024)
+    assert resolved.round_number == 23
+    assert resolved.event_name == "Qatar Grand Prix"
+
+
+def test_resolve_event_genuine_location_country_ambiguity_still_raises():
+    # Required property: "Spa" exact-matches nothing (Location is the full
+    # "Spa-Francorchamps", Country is "Belgium"), so it must fall through
+    # to substring matching - where it hits both Spa-Francorchamps
+    # (Location, via substring) and Spain (Country, via substring, since
+    # "spa" is a prefix of "spain") - and must still raise, not silently
+    # pick one. Fixing the two real failures above must not weaken this.
+    schedule = _schedule(
+        [
+            {
+                "RoundNumber": 14, "EventName": "Belgian Grand Prix",
+                "OfficialEventName": "FORMULA 1 BELGIAN GRAND PRIX 2024",
+                "Location": "Spa-Francorchamps", "Country": "Belgium",
+                "EventDate": pd.Timestamp("2024-07-28"),
+            },
+            {
+                "RoundNumber": 10, "EventName": "Spanish Grand Prix",
+                "OfficialEventName": "FORMULA 1 SPANISH GRAND PRIX 2024",
+                "Location": "Barcelona", "Country": "Spain",
+                "EventDate": pd.Timestamp("2024-06-23"),
+            },
+        ]
+    )
+    with pytest.raises(SessionNotFoundError, match="multiple"):
+        resolve_event(schedule, "Spa", 2024)

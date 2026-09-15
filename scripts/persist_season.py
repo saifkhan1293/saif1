@@ -101,7 +101,13 @@ def main(argv: list[str] | None = None) -> int:
                 skipped.append((round_number, event_name))
                 continue
 
-        request = SessionRequest(year=args.year, event=event_name, session_type=args.session)
+        # By round number, not event name: this loop already has the
+        # unambiguous RoundNumber from the schedule it's iterating, so
+        # there's no reason to round-trip it through the event-name
+        # matcher at all - see SessionRequest.round_number's docstring
+        # for the real ambiguity cases (same-country races, sponsor-name
+        # collisions) this specifically avoids.
+        request = SessionRequest(year=args.year, round_number=round_number, session_type=args.session)
 
         start = time.monotonic()
         try:

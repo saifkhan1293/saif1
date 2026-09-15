@@ -8,10 +8,34 @@ analyzing the wrong Grand Prix.
 
 This module resolves an event name against the same underlying fields
 FastF1 uses (event name, official name, location, country) but adds an
-explicit confidence gate: a query must be an unambiguous, exact substring
-match against exactly one event to be accepted. Anything else (no match,
-or a match against more than one event) raises a clear, catchable error
-instead of silently proceeding.
+explicit confidence gate: a query must be an unambiguous match against
+exactly one event to be accepted. Anything else (no match, or a match
+against more than one event) raises a clear, catchable error instead of
+silently proceeding.
+
+Resolution is two-tiered:
+
+1. EXACT match, tried against EventName, then Location, then Country, in
+   that precedence order. The first tier with exactly one exact match
+   wins immediately. OfficialEventName is deliberately excluded from this
+   tier - it is the field most likely to carry sponsor branding (e.g. a
+   season where several unrelated events' OfficialEventName contains
+   "Qatar Airways" as a title sponsor) and the least likely to be what a
+   caller actually typed.
+2. Only if no exact match exists at any of those three tiers, fall
+   through to substring matching across all four fields (Location,
+   Country, EventName, OfficialEventName), same as before - this is what
+   lets "Silverstone" resolve the British Grand Prix, or "Spa" correctly
+   stay ambiguous between Spa-Francorchamps (a Location) and Spain (a
+   Country) rather than picking one silently.
+
+This tiering was added after real 2024 season data surfaced two cases the
+substring-only version got wrong: "United States Grand Prix" substring-
+matched three same-country US races (Miami/Austin/Las Vegas) via the
+Country field, and "Qatar Grand Prix" substring-matched four events
+because several others' OfficialEventName carried "Qatar Airways" sponsor
+text. Both are exact matches against the real event's EventName once that
+tier is checked first.
 
 Deliberately not built on ``fastf1.internals.fuzzy`` (an unstable,
 explicitly "internal" module) - this is a small, self-contained
@@ -113,6 +137,28 @@ def resolve_event(schedule: pd.DataFrame, requested_event: str, year: int) -> Re
             f"'Silverstone')."
         )
 
+    # Tier 1: exact match, precedence EventName > Location > Country.
+    # OfficialEventName is intentionally not part of this tier - see the
+    # module docstring for why (sponsor-name pollution).
+    for field_name in ("EventName", "Location", "Country"):
+        exact_matches = [
+            pos
+            for pos in range(len(schedule))
+            if (value := schedule.iloc[pos].get(field_name))
+            and _normalize(str(value), year) == query
+        ]
+        if len(exact_matches) == 1:
+            return _to_resolved_event(schedule.iloc[exact_matches[0]])
+        if len(exact_matches) > 1:
+            names = [schedule.iloc[i]["EventName"] for i in exact_matches]
+            raise SessionNotFoundError(
+                f"Event name '{requested_event}' matches multiple {year} events: "
+                f"{', '.join(names)}. Use a more specific name to disambiguate."
+            )
+        # Zero exact matches at this tier - fall through to the next one.
+
+    # Tier 2: no exact match anywhere - fall through to substring matching
+    # across all four fields, same as before tiering was added.
     substring_matches: list[int] = []
     best_ratio = 0
     best_ratio_pos: int | None = None

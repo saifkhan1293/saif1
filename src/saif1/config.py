@@ -66,18 +66,34 @@ def normalize_compound(value) -> Optional[str]:
 
 @dataclass(frozen=True)
 class SessionRequest:
-    """Identifies a single F1 session to load.
+    """Identifies a single F1 session to load, by event name OR round
+    number - exactly one of the two must be given.
 
     Attributes:
         year: Championship year, e.g. 2024.
-        event: Event name or round identifier, e.g. "Bahrain Grand Prix".
-            Matched against FastF1's event schedule, which uses fuzzy
-            matching - see saif1.data.loader for how mismatches are surfaced.
+        event: Event name, e.g. "Bahrain Grand Prix". Resolved against
+            FastF1's event schedule via saif1.data.event_resolution's
+            confidence-gated matcher (see that module for the exact
+            resolution rules - never silently fuzzy-accepted).
+        round_number: Schedule round number, e.g. 1. Unambiguous by
+            construction, so it bypasses event-name resolution entirely -
+            prefer this over `event` whenever the caller already knows the
+            round number (e.g. a batch job iterating a season's own
+            schedule), rather than round-tripping an already-known-correct
+            identifier through the name matcher. One real motivating case:
+            in the 2024 season, "United States Grand Prix" and "Qatar
+            Grand Prix" are both legitimate event names that a matcher can
+            struggle with (three same-country US races; several other
+            events' OfficialEventName carrying "Qatar Airways" sponsor
+            text) - a caller that already has the round number sidesteps
+            that entirely rather than depending on the matcher getting it
+            right.
         session_type: One of VALID_SESSION_TYPES. Defaults to "R" (Race).
     """
 
     year: int
-    event: str
+    event: Optional[str] = None
+    round_number: Optional[int] = None
     session_type: str = "R"
 
     def __post_init__(self) -> None:
@@ -85,4 +101,10 @@ class SessionRequest:
             raise ValueError(
                 f"Unknown session_type '{self.session_type}'. "
                 f"Expected one of: {sorted(VALID_SESSION_TYPES)}"
+            )
+        if (self.event is None) == (self.round_number is None):
+            raise ValueError(
+                "SessionRequest requires exactly one of `event` or "
+                "`round_number` - got "
+                f"event={self.event!r}, round_number={self.round_number!r}."
             )

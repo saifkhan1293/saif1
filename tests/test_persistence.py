@@ -212,6 +212,25 @@ def test_result_filename_is_deterministic_and_slugified(fake_session, request_ob
     assert filename == "2024_01_test-grand-prix_R.json"
 
 
+def test_result_filename_is_stable_for_known_events():
+    """Regression net: a slug change means a persisted result's filename
+    changes, which orphans the old file on disk (result_filename is used
+    directly to decide where save_result overwrites - see its docstring).
+    This pins the exact slug for real event names, including the one that
+    was wrong before (accented characters were stripped, not
+    transliterated - "São Paulo Grand Prix" produced
+    "s-o-paulo-grand-prix"). A future change to slugging must fail this
+    test rather than silently start writing to new filenames.
+    """
+    from saif1.persistence import _slugify
+
+    assert _slugify("São Paulo Grand Prix") == "sao-paulo-grand-prix"
+    assert _slugify("Bahrain Grand Prix") == "bahrain-grand-prix"
+    assert _slugify("Emilia Romagna Grand Prix") == "emilia-romagna-grand-prix"
+    assert _slugify("United States Grand Prix") == "united-states-grand-prix"
+    assert _slugify("Qatar Grand Prix") == "qatar-grand-prix"
+
+
 def test_unrecognized_compound_laps_reported_not_silently_dropped(request_obj):
     # Reproduces the real 2023 Canadian GP defect: a driver with a
     # genuinely unrecognized Compound value (the literal string "None")

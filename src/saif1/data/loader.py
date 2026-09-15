@@ -3,10 +3,13 @@
 FastF1 itself is tolerant of bad input in ways that can silently produce
 the wrong data - its own event matching fuzzy-matches unrecognized event
 names to the closest known event instead of raising an error, and only
-logs a warning. This module resolves the requested event through
-saif1.data.event_resolution first, which requires an unambiguous,
+logs a warning. When request.event is given, this module resolves it
+through saif1.data.event_resolution first, which requires an unambiguous,
 confident match before any session is loaded, then requests the session
-by validated round number so FastF1's fuzzy matcher is never invoked.
+by validated round number so FastF1's fuzzy matcher is never invoked. When
+request.round_number is given instead, event-name resolution is skipped
+entirely - a round number is unambiguous by construction, so there is
+nothing to resolve.
 """
 
 from __future__ import annotations
@@ -52,27 +55,43 @@ def load_session(
     """
     enable_cache()
 
-    try:
-        schedule = fastf1.get_event_schedule(request.year, include_testing=False)
-    except Exception as exc:
-        raise SessionNotFoundError(
-            f"Could not load the {request.year} event schedule. Underlying "
-            f"error: {exc}"
-        ) from exc
+    if request.round_number is not None:
+        # Round number is unambiguous by construction - no schedule fetch
+        # or name resolution needed, and FastF1's fuzzy matcher is never
+        # invoked (get_session with an int round takes a deterministic
+        # schedule-lookup path, not the string fuzzy-match path).
+        try:
+            session = fastf1.get_session(request.year, request.round_number, request.session_type)
+        except Exception as exc:
+            raise SessionNotFoundError(
+                f"Could not resolve session: {request.year} round "
+                f"{request.round_number} ({request.session_type}). "
+                f"Underlying error: {exc}"
+            ) from exc
+        resolved_name = session.event.get("EventName", f"round {request.round_number}")
+    else:
+        try:
+            schedule = fastf1.get_event_schedule(request.year, include_testing=False)
+        except Exception as exc:
+            raise SessionNotFoundError(
+                f"Could not load the {request.year} event schedule. Underlying "
+                f"error: {exc}"
+            ) from exc
 
-    # Raises SessionNotFoundError itself on no/ambiguous match - resolution
-    # must be unambiguous and confident before any session is requested.
-    resolved = resolve_event(schedule, request.event, request.year)
-    resolved_name = resolved.event_name
+        # Raises SessionNotFoundError itself on no/ambiguous match -
+        # resolution must be unambiguous and confident before any session
+        # is requested.
+        resolved = resolve_event(schedule, request.event, request.year)
+        resolved_name = resolved.event_name
 
-    try:
-        session = fastf1.get_session(request.year, resolved.round_number, request.session_type)
-    except Exception as exc:
-        raise SessionNotFoundError(
-            f"Could not resolve session: {request.year} round "
-            f"{resolved.round_number} '{resolved_name}' ({request.session_type}). "
-            f"Underlying error: {exc}"
-        ) from exc
+        try:
+            session = fastf1.get_session(request.year, resolved.round_number, request.session_type)
+        except Exception as exc:
+            raise SessionNotFoundError(
+                f"Could not resolve session: {request.year} round "
+                f"{resolved.round_number} '{resolved_name}' ({request.session_type}). "
+                f"Underlying error: {exc}"
+            ) from exc
 
     try:
         session.load(laps=laps, telemetry=telemetry, weather=weather, messages=messages)

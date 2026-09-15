@@ -24,6 +24,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -58,6 +59,21 @@ _DRIVER_UNRECOGNIZED_COMPOUND_WARNING_THRESHOLD = 0.20
 
 
 def _slugify(text: str) -> str:
+    """Transliterate to ASCII (not strip) before slugifying, so an accented
+    event name degrades gracefully - "São Paulo Grand Prix" becomes
+    "sao-paulo-grand-prix", not "s-o-paulo-grand-prix". NFKD decomposition
+    splits an accented character into its base letter plus a combining
+    mark; encoding to ASCII with errors dropped then discards only the
+    mark, keeping the base letter.
+
+    This function determines part of a persisted result's filename (see
+    result_filename below) - changing it changes what filename an event
+    maps to. A change here requires regenerating and deleting the old
+    file for any affected event, not leaving both on disk - see
+    test_result_filename_is_stable_for_known_events for the regression
+    net against exactly that.
+    """
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
     slug = text.strip().lower()
     slug = re.sub(r"[^a-z0-9]+", "-", slug)
     return slug.strip("-")
