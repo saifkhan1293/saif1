@@ -28,13 +28,19 @@ from saif1.agent.tools import TOOLS, ToolResult
 #     HARD/SOFT compounds used, full lap_exclusions/tyre_degradation data.
 #   - Monaco (round 8, R): OCO has a race_pace entry with usable_laps=0,
 #     median_lap_time_s=None (lap 1 red flag) - present, not missing.
-#   - British GP (round 12, R): GAS is in the session's driver roster but
-#     has NO entry at all in race_pace (FastF1 recorded zero laps for
-#     him) - the "driver_not_found" case, distinct from Monaco's OCO.
+#   - British GP (round 12, R): GAS is on the roster (grid P19, status
+#     "Did not start") but absent from race_pace/stints/pit_stops
+#     entirely - laps_recorded=0. The "driver_did_not_run" case, distinct
+#     from Monaco's OCO (present, usable_laps=0) and from an unknown
+#     driver code (driver_not_in_session).
+#   - Canadian GP (round 9, R): SAR (Sargeant) has laps_recorded=24 -
+#     genuinely raced - but zero pit_stops (retired before ever pitting).
+#     The "ran, genuinely empty" case: status="ok", data=[].
 YEAR = 2024
 BAHRAIN_ROUND = 1
 MONACO_ROUND = 8
 BRITISH_ROUND = 12
+CANADIAN_ROUND = 9
 
 
 # --- ToolResult itself ---
@@ -136,12 +142,18 @@ def test_get_race_pace_zero_usable_laps_is_ok_not_no_data():
     assert result.data["median_lap_time_s"] is None
 
 
-def test_get_race_pace_driver_absent_entirely_is_no_data():
-    # GAS is on British GP's roster but has zero laps recorded by FastF1
-    # at all - absent from race_pace entirely, distinct from OCO above.
+def test_get_race_pace_driver_did_not_run():
+    # GAS: grid P19, status "Did not start" - a real, reportable fact,
+    # distinct from both OCO (present, usable_laps=0) and an unknown code.
     result = agent_tools.get_race_pace(YEAR, BRITISH_ROUND, "R", driver="GAS")
     assert result.status == "no_data"
-    assert result.reason == "driver_not_found"
+    assert result.reason == "driver_did_not_run"
+
+
+def test_get_race_pace_driver_not_in_session():
+    result = agent_tools.get_race_pace(YEAR, BAHRAIN_ROUND, "R", driver="ZZZ")
+    assert result.status == "no_data"
+    assert result.reason == "driver_not_in_session"
 
 
 def test_get_race_pace_green_flag_policy():
@@ -178,7 +190,22 @@ def test_get_stints_all_and_single_driver():
 def test_get_stints_unknown_driver_code_is_no_data():
     result = agent_tools.get_stints(YEAR, BAHRAIN_ROUND, "R", driver="ZZZ")
     assert result.status == "no_data"
-    assert result.reason == "driver_not_found"
+    assert result.reason == "driver_not_in_session"
+
+
+def test_get_stints_driver_did_not_run():
+    result = agent_tools.get_stints(YEAR, BRITISH_ROUND, "R", driver="GAS")
+    assert result.status == "no_data"
+    assert result.reason == "driver_did_not_run"
+
+
+def test_get_pit_stops_driver_ran_but_genuinely_none_is_ok_empty_not_no_data():
+    # Sargeant, Canadian GP: 24 laps recorded, retired before ever
+    # pitting. Zero pit stops is the correct, complete answer for him -
+    # not a refusal, and not the same case as GAS or an unknown code.
+    result = agent_tools.get_pit_stops(YEAR, CANADIAN_ROUND, "R", driver="SAR")
+    assert result.status == "ok"
+    assert result.data == []
 
 
 def test_get_tyre_degradation_single_driver():
@@ -230,7 +257,16 @@ def test_get_lap_exclusions_single_driver_required():
 def test_get_lap_exclusions_unknown_driver_is_no_data():
     result = agent_tools.get_lap_exclusions(YEAR, BAHRAIN_ROUND, "R", "ZZZ")
     assert result.status == "no_data"
-    assert result.reason == "driver_not_found"
+    assert result.reason == "driver_not_in_session"
+
+
+def test_get_lap_exclusions_did_not_start_driver_is_ok_not_no_data():
+    # GAS has a real lap_exclusions entry (laps_recorded=0) - a did-not-
+    # start driver is never "no_data" here, unlike the other tools; see
+    # get_lap_exclusions's docstring for why this one tool differs.
+    result = agent_tools.get_lap_exclusions(YEAR, BRITISH_ROUND, "R", "GAS")
+    assert result.status == "ok"
+    assert result.data["laps_recorded"] == 0
 
 
 def test_get_lap_exclusions_session_not_persisted():

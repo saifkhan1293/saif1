@@ -151,9 +151,11 @@ retirement) - not `no_data`. See Refusal Contract for why this distinction
 matters.
 
 **Refusal behavior**: `no_data/session_not_persisted` if the session isn't
-persisted. `no_data/driver_not_found` if a `driver` was given and has no
-entry in that policy's list at all (see Refusal Contract for what this code
-covers). Invalid `policy` raises `ValueError`.
+persisted. If a `driver` was given and has no entry in that policy's list:
+`no_data/driver_not_in_session` (not on this session's roster at all) or
+`no_data/driver_did_not_run` (on the roster, `laps_recorded=0` - see the
+Gasly example in the Refusal Contract). Invalid `policy` raises
+`ValueError`.
 
 **Backed by**: `race_pace.representative_race_pace` /
 `race_pace.green_flag_pace` fields, produced by
@@ -172,8 +174,13 @@ optional.
 **Returns** (`status="ok"`): matching entries from the persisted `stints`
 list, unchanged.
 
-**Refusal behavior**: `no_data/session_not_persisted` or
-`no_data/driver_not_found` (driver given, zero matching stints).
+**Refusal behavior**: `no_data/session_not_persisted`. If `driver` was given
+and matches zero stints: `no_data/driver_not_in_session` or
+`no_data/driver_did_not_run` depending on which applies (see Refusal
+Contract) - **not** automatically `no_data` just because the list is empty:
+a driver who ran but genuinely has zero entries for this category returns
+`status="ok", data=[]` instead (see the Sargeant pit-stops example in the
+Refusal Contract - the same rule applies here).
 
 **Backed by**: `stints` field (`analysis.stints.extract_stints` at
 persistence time).
@@ -219,12 +226,11 @@ per-compound query here to refuse.
 
 **Purpose**: Pit stops for one or every driver.
 
-**Inputs/Returns/Refusal**: same shape as `get_stints`, over the persisted
-`pit_stops` field. A driver with zero pit stops (e.g. a one-stop-free
-strategy didn't happen, or they retired before stopping) returns
-`status="ok", data=[]` if they're a real match target elsewhere in the
-session - see Refusal Contract for exactly how this is distinguished from
-`driver_not_found`.
+**Inputs/Returns/Refusal**: same shape as `get_stints`. A driver who ran but
+made zero pit stops - the real, verified example: Sargeant, Canadian GP
+2024 round 9, `laps_recorded=24`, retired before ever pitting - returns
+`status="ok", data=[]`, not `no_data`. See Refusal Contract for exactly how
+this is distinguished from `driver_not_in_session`/`driver_did_not_run`.
 
 **Backed by**: `pit_stops` field (`analysis.strategy.extract_pit_stops` at
 persistence time).
@@ -243,10 +249,17 @@ for one driver at a time (matches the candidate surface's own phrasing,
 
 **Returns** (`status="ok"`): the matching entry from the persisted
 `lap_exclusions` list - `laps_recorded`, `excluded_laps_detail`, and all
-three policies' retained/excluded counts, unchanged.
+three policies' retained/excluded counts, unchanged. **This tool has no
+`driver_did_not_run` case** - unlike every other per-driver tool: a
+did-not-start driver already has a real `lap_exclusions` entry
+(`laps_recorded: 0`), so their result is `status="ok"`, not a refusal
+(verified: Gasly, British GP 2024 round 12, returns `ok` with
+`laps_recorded: 0` here, even though the same driver/session is
+`no_data/driver_did_not_run` from `get_race_pace`).
 
-**Refusal behavior**: `no_data/session_not_persisted` or
-`no_data/driver_not_found`.
+**Refusal behavior**: `no_data/session_not_persisted`, or
+`no_data/driver_not_in_session` if `driver` isn't on the session's roster
+at all.
 
 **Backed by**: `lap_exclusions` field
 (`analysis.quality.summarize_exclusions_by_policy` at persistence time).
@@ -316,18 +329,38 @@ times.
    - `"season_not_persisted"` - no files match `(year, session_type)` at
      all (used by the one tool, `get_teammate_head_to_head`, that operates
      at season grain rather than session grain).
-   - `"driver_not_found"` - a `driver` was given and produces no entry in
-     the relevant list. **This single code deliberately covers two distinct
-     underlying causes**: the driver code doesn't appear in the session's
-     roster at all (wrong code, or wrong session), *or* the driver is a
-     real roster member but this specific data category has no entry for
-     them at all (e.g. FastF1 recorded zero laps for them, a rarer edge
-     case than a `usable_laps=0` entry - see case 1 above for why those two
-     are different). Both mean the same actionable thing to a caller -
-     "there is nothing here for this driver" - and a finer-grained split
-     was judged disproportionate for a case this rare rather than
-     genuinely useful; noted here explicitly as a deliberate simplification,
-     not an oversight.
+   - `"driver_not_in_session"` - the driver code does not appear in this
+     session's roster at all (wrong code, or wrong session).
+   - `"driver_did_not_run"` - the driver **is** on the roster, but
+     `laps_recorded == 0` for them in `lap_exclusions` - they were entered
+     for the session but never completed a lap (e.g. a genuine
+     did-not-start).
+
+   These two were originally one code (`driver_not_found`), collapsed on
+   the reasoning that both mean "nothing here for this driver" to a
+   caller. That reasoning didn't survive contact with a real case: British
+   GP 2024 round 12, Gasly (`GAS`) is on the grid in **P19** with
+   classification status **"Did not start"** - a real, reportable fact
+   ("Gasly qualified P19 and did not start" is a legitimate sentence in a
+   race report), not an absence. Under the collapsed code,
+   `get_race_pace(2024, 12, "R", driver="GAS")` and the same call with
+   `driver="ZZZ"` (not a driver at all) returned byte-identical results.
+   The persisted schema itself already distinguishes this correctly
+   (`drivers[]` carries Gasly with `status: "Did not start"`,
+   `lap_exclusions` carries him with `laps_recorded: 0`) - collapsing the
+   two at the tool boundary lost information the data underneath already
+   had, at exactly the point an LLM starts consuming it. Split for real,
+   not just renamed: `_classify_driver()` in `tools.py` checks roster
+   membership first, then `laps_recorded`, so the two codes are never
+   conflated regardless of which tool is asking.
+
+   A related, correctly-`ok` case worth distinguishing from both: a driver
+   who **did** run can have a genuinely empty result for one specific
+   category without either code applying - e.g. Sargeant (`SAR`), Canadian
+   GP 2024 round 9, `laps_recorded=24` (retired mid-race) but zero
+   `pit_stops` (never made one before retiring). `get_pit_stops(2024, 9,
+   "R", driver="SAR")` returns `status="ok", data=[]` - he ran, this
+   category is just empty for him, which is case 1 above, not this one.
 
 3. **Invalid input - a raised exception, not a `ToolResult` at all.** An
    unrecognized `session_type` or `policy` is a caller contract violation
@@ -348,6 +381,24 @@ times.
   `saif1.persistence`/`saif1.aggregation` already computed deterministically.
   If a tool doesn't have a real value, it returns `no_data` with a reason,
   never a placeholder, a zero standing in for "unknown," or a guess.
+
+## Known limitation of this tool surface: exactly one cross-session tool
+
+`get_teammate_head_to_head` is the only cross-session tool in this surface.
+Every other tool answers a question about one session in isolation. This
+means the agent has no way to establish that something is *unusual for the
+season* except within a teammate comparison - it cannot ask "is this
+degradation slope typical for this driver?", "was this pit stop slow
+relative to the rest of the field that race, or the season?", or "is this
+pace gap larger than normal for this pairing?" for anything outside
+`get_teammate_head_to_head` itself, because nothing else exposes a
+season-level baseline to compare a single-session number against.
+
+This is a correct, deliberate scope decision for Milestone 1, not a gap to
+fill now - stated here explicitly so Milestone 2 is scoped against a known
+boundary instead of discovering it mid-build. If a future milestone adds
+more cross-session tools, this note should be removed or narrowed rather
+than silently going stale.
 
 ## Gaps - not built, needs new analysis logic
 

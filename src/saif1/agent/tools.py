@@ -28,10 +28,20 @@ from saif1.config import VALID_SESSION_TYPES
 
 # Fixed, small set of "no data" reason codes - see docs/agent_tools.md
 # "The refusal contract" for exactly what each one covers and why.
+#
+# driver_not_in_session and driver_did_not_run were originally one code
+# (driver_not_found), collapsed. Split after review found a real 2024
+# case that made the collapse actively misleading: British GP round 12,
+# Gasly (GAS) is on the grid in P19 with status "Did not start" - a real,
+# reportable fact - but a query for his race pace and a query for a
+# nonsense driver code ("ZZZ") returned byte-identical no_data results.
+# "Gasly did not start" and "ZZZ is not a driver" are different facts an
+# agent needs to tell apart, not the same refusal.
 NO_DATA_REASONS = {
     "session_not_persisted": "No persisted result exists for this year/round_number/session_type.",
     "season_not_persisted": "No persisted results exist for this year/session_type at all.",
-    "driver_not_found": "The driver has no entry in the requested data for this session.",
+    "driver_not_in_session": "The driver code does not appear in this session's roster at all.",
+    "driver_did_not_run": "The driver is in this session's roster but has zero laps recorded (e.g. did not start).",
 }
 
 _RACE_PACE_POLICIES = {"representative_race_pace", "green_flag_pace"}
@@ -82,6 +92,31 @@ def _find_session(year: int, round_number: int, session_type: str) -> Optional[d
         if result["session"]["round_number"] == round_number:
             return result
     return None
+
+
+def _classify_driver(result: dict, driver: str) -> Literal["not_in_session", "did_not_run", "ran"]:
+    """Classify `driver` against one already-found session's roster and
+    lap record, for the three-way distinction driver-filtered tools need:
+
+    - "not_in_session": the driver code isn't on this session's roster at
+      all (wrong code, or the wrong session).
+    - "did_not_run": on the roster, but laps_recorded == 0 for them (a
+      real fact - e.g. Gasly, British GP round 12, grid P19, status "Did
+      not start"). Every roster driver has a lap_exclusions entry (same
+      source driver list as `drivers[]` - see persistence.py), so this
+      never has to guess.
+    - "ran": on the roster with laps_recorded > 0. A driver-filtered tool
+      finding zero matching entries for a driver classified "ran" (e.g.
+      Sargeant, Canadian GP round 9: 24 laps recorded, retired without
+      ever pitting) must return status="ok" with an empty list - that's
+      a real, valid answer ("no pit stops happened"), never "no_data".
+    """
+    if not any(d["driver"] == driver for d in result["drivers"]):
+        return "not_in_session"
+    exclusions_entry = next((e for e in result["lap_exclusions"] if e["driver"] == driver), None)
+    if exclusions_entry is not None and exclusions_entry["laps_recorded"] == 0:
+        return "did_not_run"
+    return "ran"
 
 
 def list_available_sessions(year: int, session_type: Optional[str] = None) -> ToolResult:
@@ -151,9 +186,19 @@ def get_race_pace(
         return ToolResult(status="ok", data=pace_list)
 
     entry = next((p for p in pace_list if p["driver"] == driver), None)
-    if entry is None:
-        return ToolResult(status="no_data", reason="driver_not_found")
-    return ToolResult(status="ok", data=entry)
+    if entry is not None:
+        return ToolResult(status="ok", data=entry)
+
+    # Absent from the pace list. persistence.py only omits a roster
+    # driver from race_pace when they have zero laps at all (see
+    # persistence._build_race_pace catching DriverNotFoundError) - so
+    # "ran" can't actually occur here, but _classify_driver is still the
+    # single source of truth for the not_in_session/did_not_run split
+    # rather than duplicating that logic.
+    classification = _classify_driver(result, driver)
+    if classification == "not_in_session":
+        return ToolResult(status="no_data", reason="driver_not_in_session")
+    return ToolResult(status="no_data", reason="driver_did_not_run")
 
 
 def _get_driver_filtered_field(
@@ -162,6 +207,14 @@ def _get_driver_filtered_field(
     """Shared implementation for get_stints/get_tyre_degradation/
     get_pit_stops - all three are "filter a persisted list by driver,
     optionally" with identical refusal behavior.
+
+    Unlike get_race_pace, a driver who genuinely ran can have zero
+    entries here for a real reason (e.g. Sargeant, Canadian GP round 9:
+    24 laps recorded, retired without ever pitting - zero pit_stops is
+    the correct, complete answer for him, not a refusal). So an empty
+    match list is only "no_data" when _classify_driver says the driver
+    didn't run at all or isn't in the session - a "ran" classification
+    with zero matches is status="ok", data=[].
     """
     result = _find_session(year, round_number, session_type)
     if result is None:
@@ -172,9 +225,15 @@ def _get_driver_filtered_field(
         return ToolResult(status="ok", data=items)
 
     matching = [item for item in items if item["driver"] == driver]
-    if not matching:
-        return ToolResult(status="no_data", reason="driver_not_found")
-    return ToolResult(status="ok", data=matching)
+    if matching:
+        return ToolResult(status="ok", data=matching)
+
+    classification = _classify_driver(result, driver)
+    if classification == "not_in_session":
+        return ToolResult(status="no_data", reason="driver_not_in_session")
+    if classification == "did_not_run":
+        return ToolResult(status="no_data", reason="driver_did_not_run")
+    return ToolResult(status="ok", data=[])  # ran, genuinely zero of this category
 
 
 def get_stints(
@@ -217,6 +276,13 @@ def get_lap_exclusions(year: int, round_number: int, session_type: str, driver: 
     policies, multi-label per-lap detail. `driver` is required, unlike
     the other per-driver tools - this one is only meaningful for one
     driver at a time.
+
+    Note: unlike the other driver-filtered tools, there is no separate
+    "did not run" no_data case here - every roster driver has a
+    lap_exclusions entry regardless of whether they ever set a lap time
+    (a did-not-start driver's entry simply shows laps_recorded=0, a real
+    ok answer - see Gasly, British GP round 12). Absence here can only
+    mean the driver isn't on this session's roster at all.
     """
     result = _find_session(year, round_number, session_type)
     if result is None:
@@ -224,7 +290,7 @@ def get_lap_exclusions(year: int, round_number: int, session_type: str, driver: 
 
     entry = next((e for e in result["lap_exclusions"] if e["driver"] == driver), None)
     if entry is None:
-        return ToolResult(status="no_data", reason="driver_not_found")
+        return ToolResult(status="no_data", reason="driver_not_in_session")
     return ToolResult(status="ok", data=entry)
 
 
