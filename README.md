@@ -565,8 +565,9 @@ nothing else changed.
   `representative_race_pace` head-to-head
   (`scripts/teammate_pace_summary.py`). Real result from the complete
   2024 season: **Verstappen beat Perez in 18 of 22 comparable races, by a
-  median gap of 0.605s (range -1.76s to +2.36s; only 1 of 22 races decided
-  by under 0.05s).** Same car, different circumstances: this controls for
+  median margin of 0.605s** (closest race decided by 0.040s - only 1 of 22
+  was within 0.05s, so the count isn't built on coin-flip margins). Same
+  car, different circumstances: this controls for
   the car but not for the race - track position (the faster driver often
   runs in cleaner air) and strategy divergence (different pit timing means
   different fuel loads/tyre ages at a given lap) both still contribute to

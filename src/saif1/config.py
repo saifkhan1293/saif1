@@ -10,6 +10,14 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CACHE_DIR = PROJECT_ROOT / "data" / "cache"
+# Deliberately defined here, not in persistence.py: config.py has no
+# fastf1 dependency, so any module that only needs to know where
+# persisted results live (e.g. aggregation.py) can get this path without
+# transitively importing fastf1 - see aggregation.py's module docstring
+# for why that boundary matters (persisted JSON is meant to be the clean
+# interface to everything downstream of analysis, not something that
+# drags the ingestion library along with it).
+DEFAULT_RESULTS_DIR = PROJECT_ROOT / "data" / "results"
 
 # FastF1 session-type identifiers as accepted by fastf1.get_session().
 VALID_SESSION_TYPES = {"FP1", "FP2", "FP3", "Q", "S", "SQ", "R"}

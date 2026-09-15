@@ -6,6 +6,9 @@ persisted files or network access.
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
+from pathlib import Path
 
 import pytest
 
@@ -216,3 +219,42 @@ def test_teammate_pace_head_to_head_empty_index():
 
     empty_index = SeasonIndex(year=2024, session_type="R", methodology_version="unknown", results=[])
     assert teammate_pace_head_to_head(empty_index) == []
+
+
+# --- module boundary ---
+
+
+def test_aggregation_importable_without_fastf1():
+    """aggregation.py must not require fastf1, even transitively.
+
+    Persisted JSON is meant to be the clean interface to everything
+    downstream of analysis (an agent, an API, a frontend build step) -
+    none of which should need to install FastF1's network/cache machinery
+    just to read a results directory. Runs in a subprocess with fastf1's
+    import blocked at the meta-path level, so a failure here can't leak a
+    "fastf1 unavailable" sys.modules state into any other test in this
+    process, and a pass is a genuine end-to-end check rather than just
+    re-reading aggregation.py's import list and trusting it stays true.
+
+    If a future module also only reads persisted results (e.g. an API
+    layer), it should get the same check.
+    """
+    src_dir = Path(__file__).resolve().parents[1] / "src"
+    script = (
+        f"import sys\n"
+        f"sys.path.insert(0, {str(src_dir)!r})\n"
+        "class _BlockFastF1:\n"
+        "    def find_spec(self, name, path, target=None):\n"
+        "        if name == 'fastf1' or name.startswith('fastf1.'):\n"
+        "            raise ImportError('fastf1 blocked for this test')\n"
+        "        return None\n"
+        "sys.meta_path.insert(0, _BlockFastF1())\n"
+        "import saif1.aggregation\n"
+        "print('OK')\n"
+    )
+    result = subprocess.run(
+        [sys.executable, "-c", script],
+        capture_output=True, text=True, timeout=30,
+    )
+    assert result.returncode == 0, f"stdout={result.stdout!r} stderr={result.stderr!r}"
+    assert "OK" in result.stdout

@@ -30,6 +30,23 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
+def _describe_gap(r: dict) -> str:
+    """Self-describing margin - names the faster driver, positive
+    magnitude. The internal (driver_b - driver_a) signed convention is
+    useful programmatically (see aggregation.teammate_pace_head_to_head's
+    median_gap_s) but unreadable in output without knowing that
+    convention - never print the bare signed value.
+    """
+    gap = r["median_gap_s"]
+    if gap is None:
+        return "n/a"
+    if gap > 0:
+        return f"{r['driver_a']} faster by {gap:.3f}s"
+    if gap < 0:
+        return f"{r['driver_b']} faster by {abs(gap):.3f}s"
+    return "even"
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
 
@@ -42,18 +59,15 @@ def main(argv: list[str] | None = None) -> int:
         print("No teammate pairings found.")
         return 0
 
-    print(
-        f"{'Team':<25} {'Head-to-head (representative_race_pace)':<45} "
-        f"{'Median gap':>11} {'Compared':>8} {'No data':>8}"
-    )
+    print(f"{'Team':<25} {'Wins (representative_race_pace)':<20} {'Margin':<24} {'Compared':>8} {'No data':>8}")
     for r in results:
         matchup = f"{r['driver_a']} {r['driver_a_faster']}-{r['driver_b_faster']} {r['driver_b']}"
-        gap = f"{r['median_gap_s']:+.3f}s" if r["median_gap_s"] is not None else "n/a"
-        print(f"{r['team']:<25} {matchup:<45} {gap:>11} {r['races_compared']:>8} {r['races_no_data']:>8}")
+        print(
+            f"{r['team']:<25} {matchup:<20} {_describe_gap(r):<24} "
+            f"{r['races_compared']:>8} {r['races_no_data']:>8}"
+        )
 
     print(
-        "\nMedian gap: median per-race (driver_b - driver_a) representative_race_pace "
-        "median_lap_time_s; positive means driver_b was slower on average.\n"
         "\nSame car, different circumstances. This compares teammates in identical\n"
         "machinery, which controls for the car - but not for the race. Track position\n"
         "(the faster driver often runs in cleaner air) and strategy divergence\n"

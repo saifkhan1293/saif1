@@ -56,8 +56,8 @@ import statistics
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from saif1.config import DEFAULT_RESULTS_DIR
 from saif1.exceptions import SAIF1Error
-from saif1.persistence import DEFAULT_RESULTS_DIR
 
 logger = logging.getLogger(__name__)
 

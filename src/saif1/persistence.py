@@ -37,7 +37,7 @@ from saif1.analysis.quality import POLICY_DEFINITIONS, summarize_exclusions_by_p
 from saif1.analysis.strategy import extract_pit_stops, position_changes
 from saif1.analysis.stints import extract_stints
 from saif1.analysis.tyres import compound_performance, stint_degradation
-from saif1.config import KNOWN_TYRE_COMPOUNDS, PROJECT_ROOT, SessionRequest
+from saif1.config import DEFAULT_RESULTS_DIR, KNOWN_TYRE_COMPOUNDS, SessionRequest
 from saif1.exceptions import DriverNotFoundError
 
 logger = logging.getLogger(__name__)
@@ -48,7 +48,6 @@ logger = logging.getLogger(__name__)
 # and compound validation/pit_stops/degradation logic changed.
 SCHEMA_VERSION = "1.1"
 METHODOLOGY_VERSION = "1.5.1"
-DEFAULT_RESULTS_DIR = PROJECT_ROOT / "data" / "results"
 
 # If unrecognized-compound laps make up at least this fraction of either
 # the whole session or a single driver's own laps, log a warning
