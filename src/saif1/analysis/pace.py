@@ -8,14 +8,28 @@ pace.
 
 Two named pace policies are provided (see saif1.analysis.quality for the
 full definitions and saif1.analysis.quality.POLICY_DEFINITIONS for the
-canonical prose descriptions):
+canonical prose descriptions) - and they are NOT two equally-valid
+alternatives to pick between:
 
 - calculate_race_pace() - built on quality.representative_race_pace_laps.
   Excludes Safety Car / VSC / red-flag laps, keeps yellow-flagged laps.
-  The default, general-purpose pace metric.
+  This is THE ANSWER to "how fast was this driver" - the default,
+  general-purpose pace metric, and the one any report or comparison
+  should lead with.
 - calculate_green_flag_pace() - built on quality.green_flag_laps.
-  Additionally excludes any yellow-flagged lap. Stricter, smaller sample,
-  for callers who want zero flag interference at all.
+  Additionally excludes any yellow-flagged lap. This is a SENSITIVITY
+  CHECK on the answer above, not a competing answer: "does this pace gap
+  survive the stricter policy too?" A season-scale check (2024, 33
+  persisted sessions) found representative_race_pace and green_flag_pace
+  identical in 42.4% of sessions - in practice, once laps are already
+  excluded for being deleted/inaccurate/pit-related, very little is left
+  for a stray yellow flag to additionally remove. A session where the two
+  agree is itself informative (yellow flags didn't distort the picture);
+  a session where they diverge is a signal to look closer before trusting
+  the headline number, not evidence that the headline number is wrong.
+  Do not present both side by side as if choosing between them - that
+  invites "which one is right?" when the honest framing is "one is the
+  answer, the other is the check."
 
 Every returned dict includes a "policy" field naming which one produced
 it, so downstream consumers (persisted output, reports, an agent) never

@@ -231,6 +231,25 @@ analytical policy, not a claim that every yellow-affected lap is
 inherently invalid** - it exists for callers who want zero flag
 interference at all, even at the cost of a smaller sample.
 
+**`representative_race_pace` and `green_flag_pace` are not two equally
+valid answers to pick between.** `representative_race_pace` is *the*
+answer to "how fast was this driver" - the one any report or comparison
+leads with. `green_flag_pace` is a **sensitivity check** on that answer:
+"does this pace gap survive the stricter policy too?" A season-scale check
+across all 33 persisted 2024 sessions found the two identical (every
+driver, every stat) in 14/33 (42.4%) - once laps are already excluded for
+being deleted/inaccurate/pit-related, very little is usually left for a
+stray yellow flag to additionally remove (5 of 2024's 6 Sprints landed in
+this bucket - short, clean sessions rarely catch a yellow that wasn't
+already excluded for another reason). A session where the two agree is
+itself informative (yellow flags didn't distort the picture); a session
+where they diverge is a signal to look closer, not evidence the headline
+number is wrong. **Never present both side by side as if choosing between
+them** - that invites "which one is right?" when the honest framing is
+one is the answer, the other is the check. The planned Phase 3 critic
+layer should run this comparison automatically as part of validating any
+pace-based claim (see Roadmap).
+
 **Empirical finding from verification runs** (2023 Australian GP - 3 red
 flags; 2023 Canadian GP - 1 Safety Car, no red flag): in both races, every
 driver's Safety-Car/VSC/red-flag-affected laps were *also* independently
@@ -514,23 +533,47 @@ nothing else changed.
   verification run (900+ second values). Technically correct given the
   documented definition, but easy to misread without checking
   `track_conditions` first.
-- No cross-race querying, no API, no schema migration story - each
-  session is one independent JSON file. This is the deliberate current
-  scope (see **Persisted result schema**), not an oversight.
+- `drivers[].status`/`.team` (sourced from FastF1's `Status`/`TeamName`)
+  are passed through without a null-guard, unlike the numeric position
+  fields next to them. Known, low-priority: zero occurrences across all
+  33 persisted 2024/2023/2026 sessions, and `allow_nan=False` in
+  `save_result` means a stray NaN there would now fail loudly at write
+  time rather than silently produce invalid JSON. Fix opportunistically
+  whenever something else touches `persistence.py`, not tracked as an
+  open risk beyond this note.
+- No API or user-facing querying yet - `aggregation.py` (see Roadmap)
+  provides deterministic cross-session aggregation as a Python module,
+  consumed programmatically; an API/frontend is still future work.
 - No agent, critic/validation layer, ML, or automated publishing exists
   yet - see Roadmap.
 
 ## Roadmap
 
+- **Phase 1.6** *(in progress)*: `aggregation.py` - deterministic
+  cross-session aggregation over a season's persisted results (e.g.
+  season-long teammate pace head-to-head). Built only after a full 2024
+  season was persisted and its data quality checked at scale (see
+  **Data quality & assumptions**) - an aggregation layer built against
+  untested data would risk compounding whatever that testing would have
+  caught.
 - **Phase 2**: SAIF1 Analyst Agent - tool-calling agent that uses the
-  Phase 1/1.5 analysis functions and persisted results to investigate a
-  race and produce findings.
+  Phase 1/1.5/1.6 analysis functions and persisted/aggregated results to
+  investigate a race and produce findings.
 - **Phase 3**: Critic/validation layer that challenges unsupported claims,
   bad assumptions, and small sample sizes before a finding is finalized.
+  Must include, by design rather than bolted on later: automatically
+  re-checking any `representative_race_pace`-based claim against
+  `green_flag_pace` (see **Data quality & assumptions**) - a pace gap
+  that survives the stricter policy is more defensible than one that
+  only appears under the looser one, and the critic should say so
+  explicitly rather than leave it implicit.
 - **Phase 4**: Visualization polish, structured reports, and automated
   publishing.
 - SQLite (or similar) becomes worth adopting once there's a real
-  cross-race querying need - not before.
+  need to query aggregated results interactively (e.g. from an API) -
+  not before; `aggregation.py`'s in-memory `SeasonIndex` is deliberately
+  the simpler alternative for as long as "load a season once per process"
+  is sufficient.
 - ML is intentionally deferred until a clearly-defined prediction problem
   justifies it (e.g. lap-time or degradation prediction); it is not the
   foundation of this project.
